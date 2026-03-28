@@ -1,0 +1,93 @@
+{{/*
+  Event card partial
+  Expects a dict with event fields: id, name, description, start_time, end_time, cover, ticket_uri
+*/}}
+
+{{ $eventURL := printf "https://www.facebook.com/events/%s" .id }}
+
+{{ $months := dict
+  "January" "janvier"
+  "February" "février"
+  "March" "mars"
+  "April" "avril"
+  "May" "mai"
+  "June" "juin"
+  "July" "juillet"
+  "August" "août"
+  "September" "septembre"
+  "October" "octobre"
+  "November" "novembre"
+  "December" "décembre"
+}}
+
+{{ $days := dict
+  "Monday" "lundi"
+  "Tuesday" "mardi"
+  "Wednesday" "mercredi"
+  "Thursday" "jeudi"
+  "Friday" "vendredi"
+  "Saturday" "samedi"
+  "Sunday" "dimanche"
+}}
+
+{{ $t := time .start_time }}
+{{ $dayEN := dateFormat "Monday" $t }}
+{{ $monthEN := dateFormat "January" $t }}
+{{ $dayFR := index $days $dayEN | default $dayEN }}
+{{ $monthFR := index $months $monthEN | default $monthEN }}
+{{ $dateFR := printf "%s %s %s %s" $dayFR (dateFormat "2" $t) $monthFR (dateFormat "2006" $t) }}
+{{ $timeFR := dateFormat "15h04" $t }}
+
+<article class="event-card group flex flex-col">
+
+  <!-- Cover image -->
+  <a href="{{ $eventURL }}" target="_blank" rel="noopener noreferrer" class="block overflow-hidden aspect-video bg-gray-800 relative">
+    {{ if and .cover .cover.source }}
+      <img
+        src="{{ .cover.source }}"
+        alt="{{ .name }}"
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
+      />
+    {{ else }}
+      <!-- Fallback placeholder -->
+      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800">
+        <span class="text-6xl opacity-30">♪</span>
+      </div>
+    {{ end }}
+    <!-- Date badge -->
+    <div class="absolute top-3 left-3 bg-gray-950/90 backdrop-blur-sm rounded px-3 py-1.5 text-xs font-medium text-amber-400">
+      {{ dateFormat "2 Jan." $t }}
+    </div>
+  </a>
+
+  <!-- Content -->
+  <div class="flex flex-col flex-1 p-5">
+    <h3 class="font-serif text-lg font-bold text-white mb-1 leading-snug">
+      <a href="{{ $eventURL }}" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors">
+        {{ .name }}
+      </a>
+    </h3>
+
+    <p class="text-amber-500 text-sm mb-3 capitalize">{{ $dateFR }} à {{ $timeFR }}</p>
+
+    {{ with .description }}
+      <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-1">
+        {{ . | truncate 200 "…" }}
+      </p>
+    {{ end }}
+
+    <!-- Actions -->
+    <div class="flex flex-wrap gap-3 mt-auto pt-2">
+      <a href="{{ $eventURL }}" target="_blank" rel="noopener noreferrer" class="btn-outline text-xs py-2 px-4">
+        Voir sur Facebook
+      </a>
+      {{ with .ticket_uri }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-4">
+          Billetterie
+        </a>
+      {{ end }}
+    </div>
+  </div>
+
+</article>

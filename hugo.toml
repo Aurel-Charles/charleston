@@ -1,0 +1,18 @@
+baseURL = "https://le-charleston.netlify.app/"
+languageCode = "fr-FR"
+defaultContentLanguage = "fr"
+title = "Le Charleston — Jazz Bar à Amiens"
+
+[params]
+  description = "Le Charleston est un bar jazz et salle de concert à Amiens. Programmation live, ambiance feutrée, cocktails."
+  address = "12 Rue du Jazz, 80000 Amiens, France"
+  email = "contact@le-charleston.fr"
+  facebook = "https://www.facebook.com/LeCharlestonAmiens"
+
+[build]
+  writeStats = true
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.120.0"

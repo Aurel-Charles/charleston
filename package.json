@@ -1,0 +1,20 @@
+{
+  "name": "le-charleston",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Le Charleston — Jazz Bar website",
+  "scripts": {
+    "fetch-events": "node scripts/fetch-events.js",
+    "dev": "hugo server",
+    "build": "hugo --minify"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.3"
+  }
+}

@@ -1,0 +1,41 @@
+{{ define "main" }}
+
+<section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16">
+      <p class="text-amber-400 text-sm font-medium tracking-[0.3em] uppercase mb-3">Agenda</p>
+      <h1 class="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">Programmation</h1>
+      <div class="w-16 h-px bg-amber-500 mx-auto mb-6"></div>
+      <p class="text-gray-400 text-lg max-w-xl mx-auto">Tous les concerts et événements à venir au Charleston.</p>
+    </div>
+
+    {{ $now := now }}
+    {{ $upcoming := slice }}
+    {{ range sort site.Data.events "start_time" }}
+      {{ if gt (time .start_time) $now }}
+        {{ $upcoming = $upcoming | append . }}
+      {{ end }}
+    {{ end }}
+
+    {{ if $upcoming }}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{ range $upcoming }}
+          {{ partial "event-card.html" . }}
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="text-center py-20">
+        <span class="text-6xl mb-6 block opacity-30">♪</span>
+        <p class="text-gray-400 text-lg">Aucun événement à venir pour le moment.</p>
+        <p class="text-gray-500 text-sm mt-2">Suivez notre page Facebook pour ne rien manquer.</p>
+        <a href="{{ site.Params.facebook }}" target="_blank" rel="noopener noreferrer" class="btn-outline mt-6 inline-block">
+          Voir sur Facebook
+        </a>
+      </div>
+    {{ end }}
+
+  </div>
+</section>
+
+{{ end }}

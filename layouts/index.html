@@ -1,0 +1,122 @@
+{{ define "main" }}
+
+<!-- Hero -->
+<section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+  <!-- Background gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-gray-950 via-gray-900 to-amber-950/20"></div>
+  <!-- Decorative lines -->
+  <div class="absolute inset-0 opacity-5" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, #f59e0b 60px, #f59e0b 61px);"></div>
+
+  <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+    <p class="text-amber-400 text-sm font-medium tracking-[0.3em] uppercase mb-6">Bar Jazz &amp; Concert — Amiens</p>
+    <h1 class="font-serif text-6xl sm:text-7xl lg:text-8xl font-bold text-white mb-6 leading-none">
+      Le<br /><span class="italic text-amber-400">Charleston</span>
+    </h1>
+    <p class="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+      {{ with .Params.tagline }}{{ . }}{{ else }}Une scène vivante, une ambiance feutrée, le jazz dans toute sa splendeur au cœur d'Amiens.{{ end }}
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="{{ "/programmation/" | relURL }}" class="btn-primary">Voir la programmation</a>
+      <a href="{{ site.Params.facebook }}" target="_blank" rel="noopener noreferrer" class="btn-outline">Nous suivre</a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-amber-400/50">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Events section -->
+<section id="programmation" class="py-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16">
+      <p class="text-amber-400 text-sm font-medium tracking-[0.3em] uppercase mb-3">Agenda</p>
+      <h2 class="font-serif text-4xl sm:text-5xl font-bold text-white mb-4">Programmation</h2>
+      <div class="w-16 h-px bg-amber-500 mx-auto"></div>
+    </div>
+
+    {{ $now := now }}
+    {{ $events := where site.Data.events "start_time" "ne" nil }}
+    {{ $upcoming := slice }}
+    {{ range sort site.Data.events "start_time" }}
+      {{ if gt (time .start_time) $now }}
+        {{ $upcoming = $upcoming | append . }}
+      {{ end }}
+    {{ end }}
+
+    {{ if $upcoming }}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{ range first 3 $upcoming }}
+          {{ partial "event-card.html" . }}
+        {{ end }}
+      </div>
+      <div class="text-center mt-12">
+        <a href="{{ "/programmation/" | relURL }}" class="btn-outline">Voir tous les concerts</a>
+      </div>
+    {{ else }}
+      <div class="text-center py-20">
+        <span class="text-6xl mb-6 block opacity-30">♪</span>
+        <p class="text-gray-400 text-lg">Aucun événement à venir pour le moment.</p>
+        <p class="text-gray-500 text-sm mt-2">Suivez notre page Facebook pour ne rien manquer.</p>
+        <a href="{{ site.Params.facebook }}" target="_blank" rel="noopener noreferrer" class="btn-outline mt-6 inline-block">
+          Voir sur Facebook
+        </a>
+      </div>
+    {{ end }}
+
+  </div>
+</section>
+
+<!-- Ambiance section -->
+<section class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-900/50">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-amber-400 text-sm font-medium tracking-[0.3em] uppercase mb-3">L'endroit</p>
+        <h2 class="font-serif text-4xl font-bold text-white mb-6">Un lieu de vie pour la musique</h2>
+        <p class="text-gray-400 leading-relaxed mb-4">
+          Niché au cœur d'Amiens, Le Charleston est bien plus qu'un bar : c'est un sanctuaire pour la musique vivante. Chaque soir, nos musiciens transforment l'espace en une scène intime où le jazz, le blues et les musiques du monde se rencontrent.
+        </p>
+        <p class="text-gray-400 leading-relaxed mb-8">
+          Venez savourer un cocktail soigneusement élaboré dans une atmosphère chaleureuse, entouré de boiseries sombres et de lumières tamisées qui rappellent les grands clubs new-yorkais des années 40.
+        </p>
+        <div class="flex flex-wrap gap-6 text-sm text-gray-400">
+          <div>
+            <p class="text-amber-400 font-semibold text-2xl font-serif">10+</p>
+            <p>années d'existence</p>
+          </div>
+          <div class="w-px bg-gray-700"></div>
+          <div>
+            <p class="text-amber-400 font-semibold text-2xl font-serif">200+</p>
+            <p>concerts par an</p>
+          </div>
+          <div class="w-px bg-gray-700"></div>
+          <div>
+            <p class="text-amber-400 font-semibold text-2xl font-serif">120</p>
+            <p>places assises</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="aspect-square bg-gradient-to-br from-amber-900/30 to-gray-900 rounded-lg flex items-center justify-center">
+          <span class="text-7xl opacity-20">🎷</span>
+        </div>
+        <div class="aspect-square bg-gradient-to-br from-gray-900 to-amber-900/20 rounded-lg flex items-center justify-center mt-8">
+          <span class="text-7xl opacity-20">🎹</span>
+        </div>
+        <div class="aspect-square bg-gradient-to-br from-gray-900 to-amber-900/20 rounded-lg flex items-center justify-center -mt-8">
+          <span class="text-7xl opacity-20">🎺</span>
+        </div>
+        <div class="aspect-square bg-gradient-to-br from-amber-900/30 to-gray-900 rounded-lg flex items-center justify-center">
+          <span class="text-7xl opacity-20">🥁</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

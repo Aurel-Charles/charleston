@@ -1,0 +1,8 @@
+public/
+node_modules/
+.hugo_build.lock
+resources/_gen/
+.env
+.env.local
+*.log
+.claude/
