@@ -1,0 +1,144 @@
+{{ define "main" }}
+
+{{ $id := .Params.event_id }}
+{{ $event := index (where site.Data.events "id" $id) 0 }}
+
+{{ if not $event }}
+  <div class="pt-32 pb-24 px-4 text-center">
+    <p class="font-display font-bold text-4xl uppercase text-encre/30">Événement introuvable.</p>
+    <a href="{{ "/programmation/" | relURL }}" class="btn-outline mt-8 inline-block">Retour à la programmation</a>
+  </div>
+{{ else }}
+
+{{ $months := dict
+  "January" "janvier" "February" "février" "March" "mars" "April" "avril"
+  "May" "mai" "June" "juin" "July" "juillet" "August" "août"
+  "September" "septembre" "October" "octobre" "November" "novembre" "December" "décembre"
+}}
+{{ $days := dict
+  "Monday" "lundi" "Tuesday" "mardi" "Wednesday" "mercredi" "Thursday" "jeudi"
+  "Friday" "vendredi" "Saturday" "samedi" "Sunday" "dimanche"
+}}
+{{ $t         := time $event.start_time }}
+{{ $dayFR     := index $days   (dateFormat "Monday"  $t) | default (dateFormat "Monday"  $t) }}
+{{ $monthFR   := index $months (dateFormat "January" $t) | default (dateFormat "January" $t) }}
+{{ $dateFR    := printf "%s %s %s %s" $dayFR (dateFormat "2" $t) $monthFR (dateFormat "2006" $t) }}
+{{ $dateShort := printf "%s %s %s" $dayFR (dateFormat "2" $t) $monthFR }}
+{{ $timeFR    := dateFormat "15h04" $t }}
+{{ $eventURL  := printf "https://www.facebook.com/events/%s" $event.id }}
+
+<!-- Cover plein-écran -->
+{{ if and $event.cover $event.cover.source }}
+<div class="w-full h-[55vh] overflow-hidden relative">
+  <img
+    src="{{ $event.cover.source }}"
+    alt="{{ $event.name }}"
+    class="w-full h-full object-cover"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-encre/80 via-encre/20 to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 px-4 sm:px-6 lg:px-8 pb-10 max-w-5xl mx-auto">
+    <p class="label text-sauge mb-3 capitalize">{{ $dateFR }}</p>
+    <h1 class="font-display font-black text-5xl sm:text-6xl lg:text-7xl uppercase text-creme leading-none">
+      {{ $event.name }}
+    </h1>
+  </div>
+</div>
+{{ end }}
+
+<article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
+
+  <!-- Retour -->
+  <div class="py-8 border-b border-encre/10 mb-10">
+    <a href="{{ "/programmation/" | relURL }}" class="label text-encre/30 hover:text-sauge transition-colors inline-flex items-center gap-2">
+      ← Programmation
+    </a>
+  </div>
+
+  {{ if not (and $event.cover $event.cover.source) }}
+  <p class="label mb-4 capitalize">{{ $dateFR }}</p>
+  <h1 class="font-display font-black text-5xl sm:text-6xl lg:text-7xl uppercase text-encre leading-none mb-10">
+    {{ $event.name }}
+  </h1>
+  {{ end }}
+
+  <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12 lg:gap-16">
+
+    <!-- Description + lien Facebook -->
+    <div>
+      {{ with $event.description }}
+      <p class="text-encre/70 text-lg leading-relaxed mb-10">{{ . }}</p>
+      {{ end }}
+
+      <a href="{{ $eventURL }}" target="_blank" rel="noopener noreferrer" class="btn-outline">
+        Voir sur Facebook
+      </a>
+    </div>
+
+    <!-- Infos pratiques — carte style charte -->
+    <aside>
+      <div class="bg-creme rounded-2xl overflow-hidden">
+
+        <!-- card-top : encre -->
+        <div class="bg-encre px-12 pt-12 pb-16 relative overflow-hidden">
+
+          <!-- Arche sauge top-right (partiellement clippée) -->
+          <div class="absolute -top-8 right-14 w-14 h-20 bg-sauge/25 rounded-t-full pointer-events-none"></div>
+
+          <!-- Grand cercle décoratif outline droite -->
+          <div class="absolute top-1/2 -translate-y-1/2 -right-16 w-52 h-52 rounded-full border border-creme/10 pointer-events-none"></div>
+
+          <!-- Barre sauge -->
+          <div class="w-8 h-0.5 bg-sauge mb-10 relative z-10"></div>
+
+          <!-- Date -->
+          <div class="mb-8 relative z-10">
+            <p class="label mb-2">Date</p>
+            <p class="font-mono font-bold text-creme text-2xl uppercase leading-none capitalize">{{ $dateShort }}</p>
+          </div>
+
+          <!-- Heure -->
+          <div class="mb-8 relative z-10">
+            <p class="label mb-2">Heure</p>
+            <p class="font-mono font-bold text-creme text-6xl uppercase leading-none tracking-tight">{{ $timeFR }}</p>
+          </div>
+
+          <!-- Lieu -->
+          <div class="relative z-10">
+            <p class="label mb-2">Lieu</p>
+            <p class="font-mono font-bold text-creme text-2xl uppercase leading-none">Le Charleston</p>
+            <p class="font-mono text-creme/35 text-xs mt-3 tracking-wide">{{ site.Params.address }}</p>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-creme/10 my-10 relative z-10"></div>
+
+          <!-- Style pleine largeur -->
+          <div class="relative z-10">
+            <p class="label mb-2">Style</p>
+            <p class="font-mono font-bold text-creme text-xl uppercase leading-tight">
+              {{ with $event.genre }}{{ . }}{{ else }}Jazz{{ end }}
+            </p>
+          </div>
+
+          <!-- Demi-cercle sauge bas-droite -->
+          <div class="absolute bottom-0 right-10 w-28 h-14 bg-sauge rounded-t-full pointer-events-none"></div>
+
+        </div>
+
+        <!-- card-bottom : crème -->
+        <div class="px-12 py-6 flex items-center justify-center gap-4">
+          <div class="w-1 h-1 rounded-full bg-encre/30"></div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.28em] text-sauge">Entrée libre</p>
+          <div class="w-1 h-1 rounded-full bg-encre/30"></div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+</article>
+
+{{ end }}
+
+{{ end }}

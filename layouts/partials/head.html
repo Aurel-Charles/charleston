@@ -16,5 +16,5 @@
 {{ $css := resources.Get "css/main.css" | css.PostCSS (dict "config" "postcss.config.js") | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous" />
 
-<!-- Favicon placeholder -->
-<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🎷</text></svg>' />
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/logo.svg" />

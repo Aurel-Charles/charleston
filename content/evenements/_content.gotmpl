@@ -1,0 +1,7 @@
+{{ range site.Data.events }}
+  {{ $.AddPage (dict
+    "path"   .id
+    "title"  .name
+    "params" (dict "event_id" .id)
+  ) }}
+{{ end }}

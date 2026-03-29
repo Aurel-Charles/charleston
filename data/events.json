@@ -5,17 +5,10 @@
     "description": "Le Quartet Nomade revient pour une soirée exceptionnelle au Charleston. Composé de quatre musiciens aguerris, ce groupe mêle jazz manouche et standards américains avec une énergie communicative. Une nuit de musique à ne pas manquer pour les amateurs de jazz authentique.",
     "start_time": "2026-04-12T20:30:00+0200",
     "end_time": "2026-04-12T23:30:00+0200",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
-    "ticket_uri": ""
+    "genre": "Jazz manouche",
+    "duration": "~3h",
+    "cover": { "source": "/images/concert-1.jpg" },
+    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
   },
   {
     "id": "1234567890002",
@@ -23,35 +16,21 @@
     "description": "The Riverside Band débarque à Amiens pour une soirée blues électrisante. Entre Delta blues et Chicago blues, ce trio vous plonge au cœur de la musique afro-américaine. Guitares slide, harmonica et batterie groovy pour une nuit inoubliable.",
     "start_time": "2026-04-19T21:00:00+0200",
     "end_time": "2026-04-20T00:00:00+0200",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
-    "ticket_uri": "https://www.billetweb.fr/the-riverside-band"
+    "genre": "Blues",
+    "duration": "~3h",
+    "cover": { "source": "/images/concert-4.jpg" },
+    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
   },
   {
     "id": "1234567890003",
     "name": "Soirée Django — Hommage à Reinhardt",
-    "description": "Le Charleston rend hommage au légendaire Django Reinhardt avec une soirée dédiée au jazz manouche. Deux guitares, une contrebasse, et l'esprit de Reinhardt qui plane sur la salle. Réservation conseillée, les places sont limitées.",
+    "description": "Le Charleston rend hommage au légendaire Django Reinhardt avec une soirée dédiée au jazz manouche. Deux guitares, une contrebasse, et l'esprit de Reinhardt qui plane sur la salle.",
     "start_time": "2026-05-03T20:00:00+0200",
     "end_time": "2026-05-03T23:00:00+0200",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
-    "ticket_uri": "https://www.billetweb.fr/soiree-django"
+    "genre": "Jazz manouche",
+    "duration": "~3h",
+    "cover": { "source": "" },
+    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
   },
   {
     "id": "1234567890004",
@@ -59,17 +38,10 @@
     "description": "Plongez dans l'univers festif de la Nouvelle-Orléans avec ce brass band explosif. Cuivres en parade, rythmes syncopés et ambiance de Mardi Gras garantis. Un concert debout, une fête du son qui envahit chaque recoin du Charleston.",
     "start_time": "2026-05-10T21:00:00+0200",
     "end_time": "2026-05-11T00:00:00+0200",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
-    "ticket_uri": "https://www.billetweb.fr/new-orleans-brass-band"
+    "genre": "Brass / Soul",
+    "duration": "~3h",
+    "cover": { "source": "/images/concert-2.jpg" },
+    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
   },
   {
     "id": "1234567890005",
@@ -77,17 +49,10 @@
     "description": "La chanteuse Clara Millet, accompagnée de son trio piano-basse-batterie, interprète les grands standards du jazz vocal. De Billie Holiday à Nina Simone, une voix chaude et envoûtante pour une soirée d'une élégance rare.",
     "start_time": "2026-05-17T20:30:00+0200",
     "end_time": "2026-05-17T23:00:00+0200",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
-    "ticket_uri": ""
+    "genre": "Jazz vocal",
+    "duration": "~2h30",
+    "cover": { "source": "/images/concert-3.jpg" },
+    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
   },
   {
     "id": "1234567890006",
@@ -95,35 +60,21 @@
     "description": "Le Charleston se transforme en dance floor pour une nuit funk et soul. Le collectif Groove Machine, sept musiciens sur scène, reprend les classiques de James Brown, Sly Stone et Earth Wind & Fire. Préparez vos chaussures de danse.",
     "start_time": "2026-05-23T21:30:00+0200",
     "end_time": "2026-05-24T01:00:00+0200",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
-    "ticket_uri": "https://www.billetweb.fr/funk-soul-night"
+    "genre": "Funk / Soul",
+    "duration": "~3h30",
+    "cover": { "source": "" },
+    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
   },
   {
     "id": "1234567890007",
     "name": "Bossa Nova & Samba — Grupo Carioca",
-    "description": "Le Grupo Carioca transporte le Charleston sous le soleil de Rio. Bossa nova intimiste, samba endiablée et chants en portugais pour une escapade brésilienne au cœur d'Amiens. Avec Fernanda Souza à la voix et Marcos Lima à la guitare.",
+    "description": "Le Grupo Carioca transporte le Charleston sous le soleil de Rio. Bossa nova intimiste, samba endiablée et chants en portugais pour une escapade brésilienne au cœur d'Amiens.",
     "start_time": "2026-06-06T20:00:00+0200",
     "end_time": "2026-06-06T23:00:00+0200",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
-    "ticket_uri": ""
+    "genre": "Bossa nova / Samba",
+    "duration": "~3h",
+    "cover": { "source": "" },
+    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
   },
   {
     "id": "1234567890008",
@@ -131,17 +82,10 @@
     "description": "Thomas Lefèvre, pianiste prodige formé au Conservatoire de Paris, propose un récital solo qui traverse le jazz contemporain, de Keith Jarrett à Brad Mehldau. Un moment de grâce et d'improvisation pure dans l'écrin du Charleston.",
     "start_time": "2026-06-13T20:00:00+0200",
     "end_time": "2026-06-13T22:30:00+0200",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
-    "ticket_uri": "https://www.billetweb.fr/thomas-lefevre-piano"
+    "genre": "Jazz contemporain",
+    "duration": "~2h30",
+    "cover": { "source": "" },
+    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
   },
   {
     "id": "1234567890009",
@@ -149,16 +93,9 @@
     "description": "Le Charleston ouvre les festivités du Festival Jazz d'Amiens avec une nuit exceptionnelle réunissant trois formations locales. Du jazz straight-ahead au jazz fusion, trois heures de musique vivante pour lancer la saison estivale en beauté.",
     "start_time": "2026-06-20T19:30:00+0200",
     "end_time": "2026-06-20T23:59:00+0200",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
-    "ticket_uri": "https://www.billetweb.fr/festival-jazz-amiens-ouverture"
+    "genre": "Jazz / Fusion",
+    "duration": "~4h",
+    "cover": { "source": "" },
+    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
   }
 ]

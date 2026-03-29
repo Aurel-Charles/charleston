@@ -3,91 +3,67 @@
   Expects a dict with event fields: id, name, description, start_time, end_time, cover, ticket_uri
 */}}
 
-{{ $eventURL := printf "https://www.facebook.com/events/%s" .id }}
+{{ $pageURL := printf "/evenements/%s/" .id }}
 
 {{ $months := dict
-  "January" "janvier"
-  "February" "février"
-  "March" "mars"
-  "April" "avril"
-  "May" "mai"
-  "June" "juin"
-  "July" "juillet"
-  "August" "août"
-  "September" "septembre"
-  "October" "octobre"
-  "November" "novembre"
-  "December" "décembre"
+  "January" "jan." "February" "fév." "March" "mars" "April" "avr."
+  "May" "mai" "June" "juin" "July" "juil." "August" "août"
+  "September" "sept." "October" "oct." "November" "nov." "December" "déc."
 }}
-
 {{ $days := dict
-  "Monday" "lundi"
-  "Tuesday" "mardi"
-  "Wednesday" "mercredi"
-  "Thursday" "jeudi"
-  "Friday" "vendredi"
-  "Saturday" "samedi"
-  "Sunday" "dimanche"
+  "Monday" "lundi" "Tuesday" "mardi" "Wednesday" "mercredi" "Thursday" "jeudi"
+  "Friday" "vendredi" "Saturday" "samedi" "Sunday" "dimanche"
 }}
 
 {{ $t := time .start_time }}
-{{ $dayEN := dateFormat "Monday" $t }}
-{{ $monthEN := dateFormat "January" $t }}
-{{ $dayFR := index $days $dayEN | default $dayEN }}
-{{ $monthFR := index $months $monthEN | default $monthEN }}
-{{ $dateFR := printf "%s %s %s %s" $dayFR (dateFormat "2" $t) $monthFR (dateFormat "2006" $t) }}
-{{ $timeFR := dateFormat "15h04" $t }}
+{{ $dayFR   := index $days   (dateFormat "Monday"  $t) | default (dateFormat "Monday"  $t) }}
+{{ $monthFR := index $months (dateFormat "January" $t) | default (dateFormat "January" $t) }}
+{{ $dateFR  := printf "%s %s %s" $dayFR (dateFormat "2" $t) $monthFR }}
+{{ $timeFR  := dateFormat "15h04" $t }}
 
 <article class="event-card group flex flex-col">
 
-  <!-- Cover image -->
-  <a href="{{ $eventURL }}" target="_blank" rel="noopener noreferrer" class="block overflow-hidden aspect-video bg-gray-800 relative">
-    {{ if and .cover .cover.source }}
+  {{ if and .cover .cover.source }}
+    <!-- Cover image -->
+    <a href="{{ $pageURL }}" class="block overflow-hidden aspect-video relative flex-shrink-0">
       <img
         src="{{ .cover.source }}"
         alt="{{ .name }}"
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
         loading="lazy"
       />
-    {{ else }}
-      <!-- Fallback placeholder -->
-      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800">
-        <span class="text-6xl opacity-30">♪</span>
-      </div>
-    {{ end }}
-    <!-- Date badge -->
-    <div class="absolute top-3 left-3 bg-gray-950/90 backdrop-blur-sm rounded px-3 py-1.5 text-xs font-medium text-amber-400">
-      {{ dateFormat "2 Jan." $t }}
+    </a>
+  {{ else }}
+    <!-- Forme signature : demi-cercle -->
+    <div class="flex-shrink-0 px-6 pt-6">
+      <div class="w-14 h-7 bg-sauge rounded-t-full opacity-70"></div>
     </div>
-  </a>
+  {{ end }}
 
-  <!-- Content -->
-  <div class="flex flex-col flex-1 p-5">
-    <h3 class="font-serif text-lg font-bold text-white mb-1 leading-snug">
-      <a href="{{ $eventURL }}" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors">
-        {{ .name }}
-      </a>
+  <!-- Contenu -->
+  <div class="flex flex-col flex-1 p-6 {{ if and .cover .cover.source }}pt-5{{ else }}pt-4{{ end }}">
+
+    <!-- Date label -->
+    <p class="label mb-3 capitalize">{{ $dateFR }} · {{ $timeFR }}</p>
+
+    <!-- Titre -->
+    <h3 class="font-display font-bold text-creme text-2xl sm:text-3xl uppercase leading-tight mb-3 group-hover:text-sauge transition-colors duration-200">
+      <a href="{{ $pageURL }}">{{ .name }}</a>
     </h3>
 
-    <p class="text-amber-500 text-sm mb-3 capitalize">{{ $dateFR }} à {{ $timeFR }}</p>
-
     {{ with .description }}
-      <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-1">
-        {{ . | truncate 200 "…" }}
+      <p class="text-creme/50 text-sm leading-relaxed mb-5 flex-1">
+        {{ . | truncate 150 "…" }}
       </p>
     {{ end }}
 
     <!-- Actions -->
-    <div class="flex flex-wrap gap-3 mt-auto pt-2">
-      <a href="{{ $eventURL }}" target="_blank" rel="noopener noreferrer" class="btn-outline text-xs py-2 px-4">
-        Voir sur Facebook
+    <div class="flex flex-wrap items-center gap-4 mt-auto pt-2 border-t border-creme/10">
+      <a href="{{ $pageURL }}" class="font-mono text-xs uppercase tracking-widest text-sauge hover:text-creme transition-colors">
+        En savoir plus →
       </a>
-      {{ with .ticket_uri }}
-        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-4">
-          Billetterie
-        </a>
-      {{ end }}
     </div>
+
   </div>
 
 </article>
