@@ -19,5 +19,9 @@ export default {
       },
     },
   },
+  safelist: [
+    'bg-sauge',
+    'bg-creme/30',
+  ],
   plugins: [],
 };

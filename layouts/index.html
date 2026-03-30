@@ -64,74 +64,163 @@
 </section>
 
 <!-- L'endroit -->
-<section class="py-24 px-4 sm:px-6 lg:px-8 bg-encre">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+<section class="bg-encre overflow-hidden">
 
-      <!-- Texte -->
-      <div class="lg:pt-8">
-        <p class="label text-sauge mb-3">L'endroit</p>
-        <h2 class="font-display font-black text-5xl sm:text-6xl uppercase text-creme leading-none mb-8">
-          Ta prochaine<br />pinte t'attend.
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+
+    <!-- Label -->
+    <p class="label text-sauge mb-12">L'endroit</p>
+
+    <!-- Bloc titre + photos -->
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-start">
+
+      <!-- Titre massif + texte + CTA -->
+      <div>
+        <h2 class="font-display font-black text-[5.5rem] sm:text-[7rem] uppercase text-creme leading-[0.88] tracking-tight mb-10">
+          Jazz.<br />
+          <span class="text-sauge">Blues.</span><br />
+          Soul.
         </h2>
-        <p class="text-creme/50 leading-relaxed mb-3 max-w-md">
-          Jazz, blues, soul. 120 places, une scène, des vrais musiciens. Le Charleston est ouvert mar–sam dès 18h, au cœur d'Amiens.
+        <p class="text-creme/50 leading-relaxed max-w-xs text-base mb-2">
+          Une scène de 120 places, des vrais musiciens, et une bière qui va avec.
+          Ouvert mar–sam dès 18h, au cœur d'Amiens.
         </p>
-        <p class="text-creme/50 leading-relaxed max-w-md">
-          Gratuit. Juste comme ça.
-        </p>
-
-        <div class="flex flex-wrap gap-8 mt-12">
-          <div>
-            <p class="font-display font-black text-5xl text-sauge leading-none">10+</p>
-            <p class="label text-creme/30 mt-2">Années</p>
-          </div>
-          <div class="w-px bg-creme/10"></div>
-          <div>
-            <p class="font-display font-black text-5xl text-sauge leading-none">200+</p>
-            <p class="label text-creme/30 mt-2">Concerts / an</p>
-          </div>
-          <div class="w-px bg-creme/10"></div>
-          <div>
-            <p class="font-display font-black text-5xl text-sauge leading-none">120</p>
-            <p class="label text-creme/30 mt-2">Places</p>
-          </div>
-        </div>
+        <p class="font-mono text-sauge text-xs tracking-widest uppercase mb-10">Entrée libre — toujours.</p>
+        <a href="{{ "/programmation/" | relURL }}" class="btn-outline-light">Voir les concerts</a>
       </div>
 
-      <!-- Composition photos — formes signature charte -->
-      <div class="grid grid-cols-[3fr_2fr] gap-4 items-start">
+      <!-- Carrousel photos droite -->
+      <div id="carousel-about" class="relative">
 
-        <!-- Arche : photo intérieur en portrait, arrondie en haut -->
-        <div class="overflow-hidden rounded-t-[9999px]">
-          <img
-            src="/images/bar-interieur.jpg"
-            alt="Intérieur du Charleston"
-            class="w-full aspect-[3/4] object-cover object-center"
-          />
+        <!-- Décoration arche en arrière-plan -->
+        <div class="absolute inset-0 flex items-start justify-center pointer-events-none z-0">
+          <div class="w-[85%] aspect-[3/4] bg-sauge/10 rounded-t-[9999px] mt-4"></div>
         </div>
 
-        <!-- Colonne droite : cercle + demi-cercle -->
-        <div class="flex flex-col gap-4 pt-16">
+        <!-- Demi-cercle décoratif bas-droite -->
+        <div class="absolute bottom-10 -right-8 w-28 aspect-[2/1] bg-sauge/20 rounded-t-full pointer-events-none z-0"></div>
 
-          <!-- Cercle : photo façade -->
-          <div class="overflow-hidden rounded-full aspect-square">
-            <img
-              src="/images/bar-facade.jpg"
-              alt="Façade du Charleston"
-              class="w-full h-full object-cover"
-            />
+        <!-- Slides -->
+        <div class="relative z-10 overflow-hidden aspect-[4/5]">
+
+          {{ $barInt := (resources.Get "images/bar-interieur.jpg").Fit "800x1000 webp" }}
+          <div class="slide w-full h-full">
+            <img src="{{ $barInt.RelPermalink }}" alt="Intérieur du Charleston" class="w-full h-full object-cover object-center" width="{{ $barInt.Width }}" height="{{ $barInt.Height }}" />
           </div>
 
-          <!-- Demi-cercle sauge -->
-          <div class="w-full aspect-[2/1] bg-sauge/30 rounded-t-full"></div>
+          {{ $c1 := (resources.Get "images/concert-1.jpg").Fit "800x1000 webp" }}
+          <div class="slide hidden w-full h-full">
+            <img src="{{ $c1.RelPermalink }}" alt="Concert au Charleston" class="w-full h-full object-cover object-center" width="{{ $c1.Width }}" height="{{ $c1.Height }}" />
+          </div>
 
+          {{ $c2 := (resources.Get "images/concert-2.jpg").Fit "800x1000 webp" }}
+          <div class="slide hidden w-full h-full">
+            <img src="{{ $c2.RelPermalink }}" alt="Concert au Charleston" class="w-full h-full object-cover object-center" width="{{ $c2.Width }}" height="{{ $c2.Height }}" />
+          </div>
+
+          {{ $c3 := (resources.Get "images/concert-3.jpg").Fit "800x1000 webp" }}
+          <div class="slide hidden w-full h-full">
+            <img src="{{ $c3.RelPermalink }}" alt="Concert au Charleston" class="w-full h-full object-cover object-center" width="{{ $c3.Width }}" height="{{ $c3.Height }}" />
+          </div>
+
+          {{ $c4 := (resources.Get "images/concert-4.jpg").Fit "800x1000 webp" }}
+          <div class="slide hidden w-full h-full">
+            <img src="{{ $c4.RelPermalink }}" alt="Concert au Charleston" class="w-full h-full object-cover object-center" width="{{ $c4.Width }}" height="{{ $c4.Height }}" />
+          </div>
+
+          {{ $facade := (resources.Get "images/bar-facade.jpg").Fit "800x1000 webp" }}
+          <div class="slide hidden w-full h-full">
+            <img src="{{ $facade.RelPermalink }}" alt="Façade du Charleston" class="w-full h-full object-cover object-center" width="{{ $facade.Width }}" height="{{ $facade.Height }}" />
+          </div>
+
+          <!-- Boutons prev / next -->
+          <button id="prev-about" aria-label="Image précédente"
+            class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center bg-encre/70 text-creme hover:bg-sauge hover:text-encre transition-colors duration-200 z-20">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+          </button>
+          <button id="next-about" aria-label="Image suivante"
+            class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center bg-encre/70 text-creme hover:bg-sauge hover:text-encre transition-colors duration-200 z-20">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
+
+        </div>
+
+        <!-- Dots -->
+        <div class="relative z-10 flex justify-center gap-2 mt-4">
+          <button class="dot w-2 h-2 rounded-full bg-sauge transition-colors duration-200" aria-label="Slide 1"></button>
+          <button class="dot w-2 h-2 rounded-full bg-creme/30 transition-colors duration-200" aria-label="Slide 2"></button>
+          <button class="dot w-2 h-2 rounded-full bg-creme/30 transition-colors duration-200" aria-label="Slide 3"></button>
+          <button class="dot w-2 h-2 rounded-full bg-creme/30 transition-colors duration-200" aria-label="Slide 4"></button>
+          <button class="dot w-2 h-2 rounded-full bg-creme/30 transition-colors duration-200" aria-label="Slide 5"></button>
+          <button class="dot w-2 h-2 rounded-full bg-creme/30 transition-colors duration-200" aria-label="Slide 6"></button>
         </div>
 
       </div>
 
     </div>
+
   </div>
+
+  <!-- Stats en bande horizontale -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="border-t border-creme/10 pt-10 grid grid-cols-3 gap-0">
+      <div class="pr-8">
+        <p class="font-display font-black text-7xl sm:text-8xl text-sauge leading-none">10+</p>
+        <p class="label text-creme/30 mt-3">Années</p>
+      </div>
+      <div class="border-l border-creme/10 px-8">
+        <p class="font-display font-black text-7xl sm:text-8xl text-sauge leading-none">200+</p>
+        <p class="label text-creme/30 mt-3">Concerts / an</p>
+      </div>
+      <div class="border-l border-creme/10 pl-8">
+        <p class="font-display font-black text-7xl sm:text-8xl text-sauge leading-none">120</p>
+        <p class="label text-creme/30 mt-3">Places</p>
+      </div>
+    </div>
+  </div>
+
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const carousel = document.getElementById('carousel-about')
+    const slides = carousel.querySelectorAll('.slide')
+    const dots = carousel.querySelectorAll('.dot')
+    let current = 0
+    let timer = null
+
+    function goTo(n) {
+      slides[current].classList.add('hidden')
+      dots[current].classList.remove('bg-sauge')
+      dots[current].classList.add('bg-creme/30')
+      current = (n + slides.length) % slides.length
+      slides[current].classList.remove('hidden')
+      dots[current].classList.remove('bg-creme/30')
+      dots[current].classList.add('bg-sauge')
+    }
+
+    function startAutoplay() {
+      timer = setInterval(function () { goTo(current + 1) }, 4000)
+    }
+
+    function resetAutoplay() {
+      clearInterval(timer)
+      startAutoplay()
+    }
+
+    document.getElementById('prev-about').addEventListener('click', function () { goTo(current - 1); resetAutoplay() })
+    document.getElementById('next-about').addEventListener('click', function () { goTo(current + 1); resetAutoplay() })
+    dots.forEach(function (dot, i) { dot.addEventListener('click', function () { goTo(i); resetAutoplay() }) })
+
+    carousel.addEventListener('mouseenter', function () { clearInterval(timer) })
+    carousel.addEventListener('mouseleave', startAutoplay)
+
+    startAutoplay()
+  })
+</script>
 
 {{ end }}
