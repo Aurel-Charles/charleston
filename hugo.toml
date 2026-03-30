@@ -9,6 +9,14 @@ title = "Le Charleston — Jazz Bar à Amiens"
   email = "contact@le-charleston.fr"
   facebook = "https://www.facebook.com/LeCharlestonAmiens"
 
+  # SEO — à personnaliser
+  phone = "+33 3 22 00 00 00"
+  ogImage = "/og-default.jpg"   # image sociale 1200×630 à déposer dans static/
+  latitude = "49.894067"
+  longitude = "2.295753"
+  openingHours = "Tu-Sa 18:00-02:00"
+  priceRange = "€"
+
 [build]
   writeStats = true
 

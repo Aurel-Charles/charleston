@@ -1,0 +1,82 @@
+{{- $title := cond .IsHome site.Title (printf "%s — %s" .Title site.Title) -}}
+{{- $desc := or .Description site.Params.description -}}
+{{- $url := .Permalink -}}
+{{- $img := site.Params.ogImage | absURL -}}
+{{- $type := cond .IsHome "website" "article" -}}
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ $title }}" />
+<meta property="og:description" content="{{ $desc }}" />
+<meta property="og:url" content="{{ $url }}" />
+<meta property="og:type" content="{{ $type }}" />
+<meta property="og:image" content="{{ $img }}" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:site_name" content="{{ site.Title }}" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ $title }}" />
+<meta name="twitter:description" content="{{ $desc }}" />
+<meta name="twitter:image" content="{{ $img }}" />
+
+<!-- JSON-LD : LocalBusiness (toutes les pages) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicVenue",
+  "name": "Le Charleston",
+  "url": "{{ site.BaseURL }}",
+  "telephone": "{{ site.Params.phone }}",
+  "email": "{{ site.Params.email }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ site.Params.address }}",
+    "addressLocality": "Amiens",
+    "postalCode": "80000",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "{{ site.Params.latitude }}",
+    "longitude": "{{ site.Params.longitude }}"
+  },
+  "openingHours": "{{ site.Params.openingHours }}",
+  "priceRange": "{{ site.Params.priceRange }}",
+  "sameAs": ["{{ site.Params.facebook }}"]
+}
+</script>
+
+{{- if eq .Type "evenements" }}
+{{- with .Params }}
+<!-- JSON-LD : Event -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "{{ .name }}",
+  "startDate": "{{ .start_time }}",
+  {{ with .end_time }}"endDate": "{{ . }}",{{ end }}
+  "description": "{{ .description | truncate 200 "" }}",
+  "url": "{{ $.Permalink }}",
+  "location": {
+    "@type": "Place",
+    "name": "Le Charleston",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ site.Params.address }}",
+      "addressLocality": "Amiens",
+      "postalCode": "80000",
+      "addressCountry": "FR"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Le Charleston",
+    "url": "{{ site.BaseURL }}"
+  }
+  {{ with .cover }}{{ with .source }},
+  "image": "{{ . }}"{{ end }}{{ end }}
+}
+</script>
+{{- end }}
+{{- end }}
