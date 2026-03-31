@@ -9,13 +9,15 @@
  *   FACEBOOK_ACCESS_TOKEN — Page access token (long-lived)
  */
 
-import { writeFileSync } from "fs";
+import { writeFileSync, mkdirSync, existsSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 import fetch from "node-fetch";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const OUTPUT_PATH = resolve(__dirname, "../data/events.json");
+const OUTPUT_PATH   = resolve(__dirname, "../data/events.json");
+const COVERS_DIR    = resolve(__dirname, "../static/images/events");
+const COVERS_PREFIX = "/images/events";
 
 const PAGE_ID = process.env.PAGE_ID;
 const ACCESS_TOKEN = process.env.FACEBOOK_ACCESS_TOKEN;
@@ -71,6 +73,30 @@ async function fetchAllEvents() {
   return allEvents;
 }
 
+async function downloadCover(event) {
+  const src = event?.cover?.source;
+  if (!src) return event;
+
+  const localPath = resolve(COVERS_DIR, `${event.id}.jpg`);
+
+  // Skip if already downloaded (avoid unnecessary re-fetches)
+  if (existsSync(localPath)) {
+    return { ...event, cover: { ...event.cover, source: `${COVERS_PREFIX}/${event.id}.jpg` } };
+  }
+
+  try {
+    const res = await fetch(src);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const buf = Buffer.from(await res.arrayBuffer());
+    writeFileSync(localPath, buf);
+    console.log(`[fetch-events] Cover saved: ${event.id}.jpg`);
+    return { ...event, cover: { ...event.cover, source: `${COVERS_PREFIX}/${event.id}.jpg` } };
+  } catch (err) {
+    console.warn(`[fetch-events] Could not download cover for ${event.id}: ${err.message} — keeping original URL`);
+    return event;
+  }
+}
+
 async function main() {
   console.log(`[fetch-events] Fetching events for page ${PAGE_ID}…`);
 
@@ -78,7 +104,11 @@ async function main() {
     const events = await fetchAllEvents();
     console.log(`[fetch-events] Retrieved ${events.length} upcoming event(s).`);
 
-    writeFileSync(OUTPUT_PATH, JSON.stringify(events, null, 2), "utf-8");
+    mkdirSync(COVERS_DIR, { recursive: true });
+
+    const eventsWithCovers = await Promise.all(events.map(downloadCover));
+
+    writeFileSync(OUTPUT_PATH, JSON.stringify(eventsWithCovers, null, 2), "utf-8");
     console.log(`[fetch-events] Written to ${OUTPUT_PATH}`);
   } catch (err) {
     console.error(`[fetch-events] ERROR: ${err.message}`);
