@@ -1,15 +1,53 @@
 {{- $title := cond .IsHome site.Title (printf "%s — %s" .Title site.Title) -}}
 {{- $desc := or .Description site.Params.description -}}
-{{- $url := .Permalink -}}
-{{- $img := site.Params.ogImage | absURL -}}
 {{- $type := cond .IsHome "website" "article" -}}
+
+{{- /* ─── OG image dynamique ─────────────────────────────────────────── */}}
+{{- $ogImg := "" -}}
+
+{{- /* Événement avec cover Facebook → on l'utilise directement */}}
+{{- if and (eq .Type "evenements") .Params.cover -}}
+  {{- with .Params.cover.source -}}
+    {{- $ogImg = . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Autres pages → génération Hugo Pipes */}}
+{{- if not $ogImg -}}
+  {{- $base := resources.Get "images/bar-interieur.jpg" -}}
+  {{- $base = $base.Fit "1200x630 jpeg q85" -}}
+  {{- $font := resources.Get "fonts/barlow-condensed-bold.ttf" -}}
+  {{- $pageTitle := cond .IsHome "Jazz Bar · Amiens" (upper .Title) -}}
+
+  {{- $filters := slice
+    (images.Brightness -35)
+    (images.Text "LE CHARLESTON" (dict
+      "color"  "#7B9E8E"
+      "size"   44
+      "x"      60
+      "y"      200
+      "font"   $font
+    ))
+    (images.Text $pageTitle (dict
+      "color"  "#EEEAE0"
+      "size"   80
+      "x"      60
+      "y"      255
+      "font"   $font
+    ))
+  -}}
+  {{- $generated := $base | images.Filter $filters -}}
+  {{- $ogImg = $generated.Permalink -}}
+{{- end -}}
+
+{{- $ogImgAbs := cond (hasPrefix $ogImg "http") $ogImg ($ogImg | absURL) -}}
 
 <!-- Open Graph -->
 <meta property="og:title" content="{{ $title }}" />
 <meta property="og:description" content="{{ $desc }}" />
-<meta property="og:url" content="{{ $url }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
 <meta property="og:type" content="{{ $type }}" />
-<meta property="og:image" content="{{ $img }}" />
+<meta property="og:image" content="{{ $ogImgAbs }}" />
 <meta property="og:locale" content="fr_FR" />
 <meta property="og:site_name" content="{{ site.Title }}" />
 
@@ -17,7 +55,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="{{ $title }}" />
 <meta name="twitter:description" content="{{ $desc }}" />
-<meta name="twitter:image" content="{{ $img }}" />
+<meta name="twitter:image" content="{{ $ogImgAbs }}" />
 
 <!-- JSON-LD : LocalBusiness (toutes les pages) -->
 <script type="application/ld+json">
