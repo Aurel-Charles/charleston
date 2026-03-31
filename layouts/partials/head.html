@@ -6,15 +6,15 @@
 <!-- Canonical -->
 <link rel="canonical" href="{{ .Permalink }}" />
 
-<!-- Open Graph -->
-<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}" />
-<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}" />
-<meta property="og:url" content="{{ .Permalink }}" />
-<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
+<!-- SEO : Open Graph, Twitter Card, JSON-LD -->
+{{ partial "seo.html" . }}
 
 <!-- Tailwind via Hugo Pipes -->
 {{ $css := resources.Get "css/main.css" | css.PostCSS (dict "config" "postcss.config.js") | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous" />
+
+<!-- Font Awesome 4 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/logo.svg" />
