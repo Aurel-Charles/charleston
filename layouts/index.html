@@ -185,8 +185,6 @@
 </section>
 
 <!-- Nous trouver -->
-{{- $lat := site.Params.latitude -}}
-{{- $lon := site.Params.longitude -}}
 <section id="acces" class="bg-creme py-24 px-4 sm:px-6 lg:px-8">
   <div class="max-w-6xl mx-auto">
 
@@ -196,7 +194,7 @@
         <h2 class="font-display font-black text-5xl sm:text-6xl uppercase text-encre leading-none">Nous trouver</h2>
       </div>
       <a
-        href="https://www.google.com/maps/search/?api=1&query={{ $lat }},{{ $lon }}"
+        href="https://maps.google.com/?q=Le+Charleston+Amiens"
         target="_blank" rel="noopener noreferrer"
         class="btn-outline self-start sm:self-auto flex-shrink-0"
       >
@@ -210,10 +208,11 @@
       <div class="rounded-2xl overflow-hidden border border-encre/10" style="min-height:400px;">
         <iframe
           title="Carte — Le Charleston, Amiens"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2570.1823657241594!2d2.2945985769852113!3d49.89537947149156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e7843f3b37de33%3A0xe5e02e8c0c7dd4ae!2sLe%20Charleston!5e0!3m2!1sfr!2sfr!4v1774966952545!5m2!1sfr!2sfr"
           width="100%" height="100%"
-          style="min-height:400px; display:block;"
-          frameborder="0" scrolling="no"
-          src="https://www.openstreetmap.org/export/embed.html?bbox={{ printf "%.6f" (sub (float $lon) 0.012) }}%2C{{ printf "%.6f" (sub (float $lat) 0.006) }}%2C{{ printf "%.6f" (add (float $lon) 0.012) }}%2C{{ printf "%.6f" (add (float $lat) 0.006) }}&layer=mapnik&marker={{ $lat }}%2C{{ $lon }}"
+          style="min-height:400px; display:block; border:0;"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
 
