@@ -1,0 +1,78 @@
+{{/*
+  jam-banner.html
+  Detects the next upcoming event whose name contains "jam" (case-insensitive)
+  and displays a recurring-event spotlight banner.
+  Shows nothing if no upcoming jam is found.
+*/}}
+
+{{- $jam := false -}}
+{{- $now := now -}}
+{{- range sort site.Data.events "start_time" -}}
+  {{- if and (not $jam) (gt (time .start_time) $now) -}}
+    {{- if strings.Contains (.name | lower) "jam" -}}
+      {{- $jam = . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with $jam -}}
+{{- $t       := time .start_time -}}
+{{- $months  := dict "January" "jan." "February" "fév." "March" "mars" "April" "avr." "May" "mai" "June" "juin" "July" "juil." "August" "août" "September" "sept." "October" "oct." "November" "nov." "December" "déc." -}}
+{{- $days    := dict "Monday" "lundi" "Tuesday" "mardi" "Wednesday" "mercredi" "Thursday" "jeudi" "Friday" "vendredi" "Saturday" "samedi" "Sunday" "dimanche" -}}
+{{- $dayFR   := index $days   (dateFormat "Monday" $t)  | default (dateFormat "Monday" $t) -}}
+{{- $monthFR := index $months (dateFormat "January" $t) | default (dateFormat "January" $t) -}}
+{{- $dateFR  := printf "%s %s %s" $dayFR (dateFormat "2" $t) $monthFR -}}
+{{- $timeFR  := dateFormat "15h04" $t -}}
+{{- $pageURL := printf "/evenements/%s/" .id -}}
+
+<section class="relative overflow-hidden border-y border-sauge/30 bg-encre">
+
+  <!-- Forme décorative arrière-plan -->
+  <div class="absolute right-0 top-0 bottom-0 flex items-center pointer-events-none">
+    <div class="w-64 h-64 rounded-full border border-sauge/10 -mr-32"></div>
+  </div>
+  <div class="absolute right-24 -bottom-8 w-24 h-12 bg-sauge/10 rounded-t-full pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-6">
+
+      <!-- Icône + badge -->
+      <div class="flex-shrink-0 flex items-center gap-4">
+        <div class="w-14 h-14 rounded-full bg-sauge/20 border border-sauge/30 flex items-center justify-center">
+          <i class="fa fa-music text-sauge text-xl"></i>
+        </div>
+        <div class="sm:hidden">
+          <p class="label text-sauge">Mensuel</p>
+        </div>
+      </div>
+
+      <!-- Texte central -->
+      <div class="flex-1 min-w-0">
+        <div class="hidden sm:flex items-center gap-3 mb-1">
+          <p class="label text-sauge">Mensuel</p>
+        </div>
+        <h3 class="font-display font-black text-3xl sm:text-4xl uppercase text-creme leading-none mb-1">
+          {{ .name }}
+        </h3>
+        {{ with .description }}
+        <p class="text-creme/50 text-sm leading-relaxed max-w-xl mt-2">{{ . | truncate 120 "…" }}</p>
+        {{ end }}
+      </div>
+
+      <!-- Date + CTA -->
+      <div class="flex-shrink-0 flex flex-col items-start sm:items-end gap-3">
+        <div class="text-right">
+          <p class="label text-sauge/70 mb-0.5">Prochain</p>
+          <p class="font-mono text-creme font-bold text-lg uppercase leading-none capitalize">{{ $dateFR }}</p>
+          <p class="font-mono text-creme/40 text-xs mt-1">à {{ $timeFR }}</p>
+        </div>
+        <a href="{{ $pageURL | relURL }}" class="btn-outline-light">
+          <i class="fa fa-calendar-o mr-2"></i>En savoir plus
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+{{- end -}}
