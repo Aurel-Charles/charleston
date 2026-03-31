@@ -75,9 +75,15 @@
           <p class="font-mono text-creme/30 text-xs uppercase tracking-widest">Prochaine date à venir</p>
         </div>
         {{ end }}
+        {{ if $jam }}
+        <a href="{{ printf "/evenements/%s/" $jam.id | relURL }}" class="btn-outline-light">
+          <i class="fa fa-calendar-o mr-2"></i>En savoir plus
+        </a>
+        {{ else }}
         <a href="{{ "/jam/" | relURL }}" class="btn-outline-light">
           <i class="fa fa-calendar-o mr-2"></i>En savoir plus
         </a>
+        {{ end }}
       </div>
 
     </div>
