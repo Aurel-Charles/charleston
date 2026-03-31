@@ -1,8 +1,9 @@
 {{/*
   jam-banner.html
-  Detects the next upcoming event whose name contains "jam" (case-insensitive)
-  and displays a recurring-event spotlight banner.
-  Shows nothing if no upcoming jam is found.
+  Always visible banner for the recurring Jam Session.
+  If an upcoming event named "jam" exists in site.Data.events, the next date is shown.
+  Otherwise the banner is displayed without a date.
+  The CTA always points to /jam/ (permanent info page).
 */}}
 
 {{- $jam := false -}}
@@ -15,15 +16,17 @@
   {{- end -}}
 {{- end -}}
 
-{{- with $jam -}}
-{{- $t       := time .start_time -}}
-{{- $months  := dict "January" "jan." "February" "fév." "March" "mars" "April" "avr." "May" "mai" "June" "juin" "July" "juil." "August" "août" "September" "sept." "October" "oct." "November" "nov." "December" "déc." -}}
-{{- $days    := dict "Monday" "lundi" "Tuesday" "mardi" "Wednesday" "mercredi" "Thursday" "jeudi" "Friday" "vendredi" "Saturday" "samedi" "Sunday" "dimanche" -}}
-{{- $dayFR   := index $days   (dateFormat "Monday" $t)  | default (dateFormat "Monday" $t) -}}
-{{- $monthFR := index $months (dateFormat "January" $t) | default (dateFormat "January" $t) -}}
-{{- $dateFR  := printf "%s %s %s" $dayFR (dateFormat "2" $t) $monthFR -}}
-{{- $timeFR  := dateFormat "15h04" $t -}}
-{{- $pageURL := printf "/evenements/%s/" .id -}}
+{{- $dateFR := "" -}}
+{{- $timeFR := "" -}}
+{{- if $jam -}}
+  {{- $t       := time $jam.start_time -}}
+  {{- $months  := dict "January" "jan." "February" "fév." "March" "mars" "April" "avr." "May" "mai" "June" "juin" "July" "juil." "August" "août" "September" "sept." "October" "oct." "November" "nov." "December" "déc." -}}
+  {{- $days    := dict "Monday" "lundi" "Tuesday" "mardi" "Wednesday" "mercredi" "Thursday" "jeudi" "Friday" "vendredi" "Saturday" "samedi" "Sunday" "dimanche" -}}
+  {{- $dayFR   := index $days   (dateFormat "Monday" $t)  | default (dateFormat "Monday" $t) -}}
+  {{- $monthFR := index $months (dateFormat "January" $t) | default (dateFormat "January" $t) -}}
+  {{- $dateFR  = printf "%s %s %s" $dayFR (dateFormat "2" $t) $monthFR -}}
+  {{- $timeFR  = dateFormat "15h04" $t -}}
+{{- end -}}
 
 <section class="relative overflow-hidden border-y border-sauge/30 bg-encre">
 
@@ -52,21 +55,27 @@
           <p class="label text-sauge">Mensuel</p>
         </div>
         <h3 class="font-display font-black text-3xl sm:text-4xl uppercase text-creme leading-none mb-1">
-          {{ .name }}
+          Jam Session
         </h3>
-        {{ with .description }}
-        <p class="text-creme/50 text-sm leading-relaxed max-w-xl mt-2">{{ . | truncate 120 "…" }}</p>
-        {{ end }}
+        <p class="text-creme/50 text-sm leading-relaxed max-w-xl mt-2">
+          Scène ouverte mensuelle — musiciens amateurs et pros, tous styles bienvenus.
+        </p>
       </div>
 
-      <!-- Date + CTA -->
+      <!-- Date (si dispo) + CTA -->
       <div class="flex-shrink-0 flex flex-col items-start sm:items-end gap-3">
+        {{ if $jam }}
         <div class="text-right">
           <p class="label text-sauge/70 mb-0.5">Prochain</p>
           <p class="font-mono text-creme font-bold text-lg uppercase leading-none capitalize">{{ $dateFR }}</p>
           <p class="font-mono text-creme/40 text-xs mt-1">à {{ $timeFR }}</p>
         </div>
-        <a href="{{ $pageURL | relURL }}" class="btn-outline-light">
+        {{ else }}
+        <div class="text-right">
+          <p class="font-mono text-creme/30 text-xs uppercase tracking-widest">Prochaine date à venir</p>
+        </div>
+        {{ end }}
+        <a href="{{ "/jam/" | relURL }}" class="btn-outline-light">
           <i class="fa fa-calendar-o mr-2"></i>En savoir plus
         </a>
       </div>
@@ -75,4 +84,3 @@
   </div>
 
 </section>
-{{- end -}}
