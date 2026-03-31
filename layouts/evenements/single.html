@@ -69,9 +69,16 @@
       <p class="text-encre/70 text-lg leading-relaxed mb-10">{{ . }}</p>
       {{ end }}
 
-      <a href="{{ $eventURL }}" target="_blank" rel="noopener noreferrer" class="btn-outline">
-        Voir sur Facebook
-      </a>
+      <div class="flex flex-wrap gap-4">
+        <a href="{{ $eventURL }}" target="_blank" rel="noopener noreferrer" class="btn-outline">
+          <i class="fa fa-facebook-square mr-2"></i>Voir sur Facebook
+        </a>
+        {{ with $event.ticket_uri }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <i class="fa fa-ticket mr-2"></i>Billetterie
+        </a>
+        {{ end }}
+      </div>
     </div>
 
     <!-- Infos pratiques — carte style charte -->
@@ -112,13 +119,17 @@
           <!-- Divider -->
           <div class="h-px bg-creme/10 my-10 relative z-10"></div>
 
-          <!-- Style pleine largeur -->
+          {{ with $event.tags }}
+          <!-- Style / tags -->
           <div class="relative z-10">
             <p class="label mb-2">Style</p>
-            <p class="font-mono font-bold text-creme text-xl uppercase leading-tight">
-              {{ with $event.genre }}{{ . }}{{ else }}Jazz{{ end }}
-            </p>
+            <div class="flex flex-wrap gap-2">
+              {{ range . }}
+              <span class="font-mono font-bold text-creme text-sm uppercase tracking-wide">#{{ . }}</span>
+              {{ end }}
+            </div>
           </div>
+          {{ end }}
 
           <!-- Demi-cercle sauge bas-droite -->
           <div class="absolute bottom-0 right-10 w-28 h-14 bg-sauge rounded-t-full pointer-events-none"></div>
