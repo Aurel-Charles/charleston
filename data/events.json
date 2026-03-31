@@ -1,5 +1,41 @@
 [
   {
+    "id": "9999999990001",
+    "name": "Jam Session — Scène Ouverte",
+    "description": "Chaque premier dimanche du mois, Le Charleston ouvre sa scène à tous les musiciens. Jazz, blues, soul, funk... amenez votre instrument, rejoignez la session ou venez simplement écouter. Ambiance décontractée, entrée libre.",
+    "start_time": "2026-04-05T17:00:00+0200",
+    "end_time": "2026-04-05T21:00:00+0200",
+    "genre": "Jazz / Scène ouverte",
+    "cover": {
+      "source": "/images/concert-4.jpg"
+    },
+    "place": {
+      "name": "Le Charleston",
+      "location": {
+        "city": "Amiens",
+        "country": "France"
+      }
+    }
+  },
+  {
+    "id": "9999999990002",
+    "name": "Jam Session — Scène Ouverte",
+    "description": "Chaque premier dimanche du mois, Le Charleston ouvre sa scène à tous les musiciens. Jazz, blues, soul, funk... amenez votre instrument, rejoignez la session ou venez simplement écouter. Ambiance décontractée, entrée libre.",
+    "start_time": "2026-05-03T17:00:00+0200",
+    "end_time": "2026-05-03T21:00:00+0200",
+    "genre": "Jazz / Scène ouverte",
+    "cover": {
+      "source": "/images/concert-4.jpg"
+    },
+    "place": {
+      "name": "Le Charleston",
+      "location": {
+        "city": "Amiens",
+        "country": "France"
+      }
+    }
+  },
+  {
     "id": "1234567890001",
     "name": "Quartet Nomade — Nuit de Jazz",
     "description": "Le Quartet Nomade revient pour une soirée exceptionnelle au Charleston. Composé de quatre musiciens aguerris, ce groupe mêle jazz manouche et standards américains avec une énergie communicative. Une nuit de musique à ne pas manquer pour les amateurs de jazz authentique.",
@@ -7,8 +43,16 @@
     "end_time": "2026-04-12T23:30:00+0200",
     "genre": "Jazz manouche",
     "duration": "~3h",
-    "cover": { "source": "/images/concert-1.jpg" },
-    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
+    "cover": {
+      "source": "/images/concert-1.jpg"
+    },
+    "place": {
+      "name": "Le Charleston",
+      "location": {
+        "city": "Amiens",
+        "country": "France"
+      }
+    }
   },
   {
     "id": "1234567890002",
@@ -18,8 +62,16 @@
     "end_time": "2026-04-20T00:00:00+0200",
     "genre": "Blues",
     "duration": "~3h",
-    "cover": { "source": "/images/concert-4.jpg" },
-    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
+    "cover": {
+      "source": "/images/concert-4.jpg"
+    },
+    "place": {
+      "name": "Le Charleston",
+      "location": {
+        "city": "Amiens",
+        "country": "France"
+      }
+    }
   },
   {
     "id": "1234567890003",
@@ -29,8 +81,16 @@
     "end_time": "2026-05-03T23:00:00+0200",
     "genre": "Jazz manouche",
     "duration": "~3h",
-    "cover": { "source": "" },
-    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
+    "cover": {
+      "source": ""
+    },
+    "place": {
+      "name": "Le Charleston",
+      "location": {
+        "city": "Amiens",
+        "country": "France"
+      }
+    }
   },
   {
     "id": "1234567890004",
@@ -40,8 +100,16 @@
     "end_time": "2026-05-11T00:00:00+0200",
     "genre": "Brass / Soul",
     "duration": "~3h",
-    "cover": { "source": "/images/concert-2.jpg" },
-    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
+    "cover": {
+      "source": "/images/concert-2.jpg"
+    },
+    "place": {
+      "name": "Le Charleston",
+      "location": {
+        "city": "Amiens",
+        "country": "France"
+      }
+    }
   },
   {
     "id": "1234567890005",
@@ -51,8 +119,16 @@
     "end_time": "2026-05-17T23:00:00+0200",
     "genre": "Jazz vocal",
     "duration": "~2h30",
-    "cover": { "source": "/images/concert-3.jpg" },
-    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
+    "cover": {
+      "source": "/images/concert-3.jpg"
+    },
+    "place": {
+      "name": "Le Charleston",
+      "location": {
+        "city": "Amiens",
+        "country": "France"
+      }
+    }
   },
   {
     "id": "1234567890006",
@@ -62,8 +138,16 @@
     "end_time": "2026-05-24T01:00:00+0200",
     "genre": "Funk / Soul",
     "duration": "~3h30",
-    "cover": { "source": "" },
-    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
+    "cover": {
+      "source": ""
+    },
+    "place": {
+      "name": "Le Charleston",
+      "location": {
+        "city": "Amiens",
+        "country": "France"
+      }
+    }
   },
   {
     "id": "1234567890007",
@@ -73,8 +157,16 @@
     "end_time": "2026-06-06T23:00:00+0200",
     "genre": "Bossa nova / Samba",
     "duration": "~3h",
-    "cover": { "source": "" },
-    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
+    "cover": {
+      "source": ""
+    },
+    "place": {
+      "name": "Le Charleston",
+      "location": {
+        "city": "Amiens",
+        "country": "France"
+      }
+    }
   },
   {
     "id": "1234567890008",
@@ -84,8 +176,16 @@
     "end_time": "2026-06-13T22:30:00+0200",
     "genre": "Jazz contemporain",
     "duration": "~2h30",
-    "cover": { "source": "" },
-    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
+    "cover": {
+      "source": ""
+    },
+    "place": {
+      "name": "Le Charleston",
+      "location": {
+        "city": "Amiens",
+        "country": "France"
+      }
+    }
   },
   {
     "id": "1234567890009",
@@ -95,7 +195,15 @@
     "end_time": "2026-06-20T23:59:00+0200",
     "genre": "Jazz / Fusion",
     "duration": "~4h",
-    "cover": { "source": "" },
-    "place": { "name": "Le Charleston", "location": { "city": "Amiens", "country": "France" } }
+    "cover": {
+      "source": ""
+    },
+    "place": {
+      "name": "Le Charleston",
+      "location": {
+        "city": "Amiens",
+        "country": "France"
+      }
+    }
   }
 ]
