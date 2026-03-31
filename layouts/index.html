@@ -184,6 +184,67 @@
 
 </section>
 
+<!-- Nous trouver -->
+{{- $lat := site.Params.latitude -}}
+{{- $lon := site.Params.longitude -}}
+<section id="acces" class="bg-creme py-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+      <div>
+        <p class="label mb-2">Accès</p>
+        <h2 class="font-display font-black text-5xl sm:text-6xl uppercase text-encre leading-none">Nous trouver</h2>
+      </div>
+      <a
+        href="https://www.google.com/maps/search/?api=1&query={{ $lat }},{{ $lon }}"
+        target="_blank" rel="noopener noreferrer"
+        class="btn-outline self-start sm:self-auto flex-shrink-0"
+      >
+        <i class="fa fa-map-marker mr-2"></i>Itinéraire
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
+
+      <!-- Carte -->
+      <div class="rounded-2xl overflow-hidden border border-encre/10" style="min-height:400px;">
+        <iframe
+          title="Carte — Le Charleston, Amiens"
+          width="100%" height="100%"
+          style="min-height:400px; display:block;"
+          frameborder="0" scrolling="no"
+          src="https://www.openstreetmap.org/export/embed.html?bbox={{ printf "%.6f" (sub (float $lon) 0.012) }}%2C{{ printf "%.6f" (sub (float $lat) 0.006) }}%2C{{ printf "%.6f" (add (float $lon) 0.012) }}%2C{{ printf "%.6f" (add (float $lat) 0.006) }}&layer=mapnik&marker={{ $lat }}%2C{{ $lon }}"
+        ></iframe>
+      </div>
+
+      <!-- Infos -->
+      <div class="flex flex-col gap-6 justify-center">
+        <div>
+          <p class="label mb-2">Adresse</p>
+          <p class="font-mono font-bold text-encre text-base uppercase leading-snug">{{ site.Params.address }}</p>
+        </div>
+        <div>
+          <p class="label mb-2">Horaires</p>
+          <p class="text-encre/60 text-sm leading-relaxed font-mono">
+            Mardi — Samedi<br>18h00 — 02h00
+          </p>
+        </div>
+        <div>
+          <p class="label mb-2">Contact</p>
+          <a href="mailto:{{ site.Params.email }}" class="font-mono text-sauge text-sm hover:text-encre transition-colors">{{ site.Params.email }}</a>
+          {{ with site.Params.phone }}<p class="font-mono text-encre/40 text-sm mt-1">{{ . }}</p>{{ end }}
+        </div>
+        <div class="flex flex-col gap-2 pt-2 border-t border-encre/10">
+          <p class="flex items-center gap-2 text-encre/50 text-sm"><i class="fa fa-train text-sauge w-4"></i>Gare d'Amiens — 10 min à pied</p>
+          <p class="flex items-center gap-2 text-encre/50 text-sm"><i class="fa fa-bus text-sauge w-4"></i>Bus Ametis — arrêt Gare</p>
+          <p class="flex items-center gap-2 text-encre/50 text-sm"><i class="fa fa-car text-sauge w-4"></i>Parking Cathédrale — 5 min</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const carousel = document.getElementById('carousel-about')
