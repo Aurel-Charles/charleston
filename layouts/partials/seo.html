@@ -1,14 +1,25 @@
+{{- /* ─── Lookup données événement si page événement ────────────────── */}}
+{{- $event := false -}}
+{{- if eq .Type "evenements" -}}
+  {{- $event = index (where site.Data.events "id" .Params.event_id) 0 -}}
+{{- end -}}
+
+{{- /* ─── Titre et description ────────────────────────────────────────── */}}
 {{- $title := cond .IsHome site.Title (printf "%s — %s" .Title site.Title) -}}
-{{- $desc := or .Description site.Params.description -}}
+{{- $desc  := or .Description site.Params.description -}}
+{{- if $event -}}
+  {{- $title = printf "%s — %s" $event.name site.Title -}}
+  {{- with $event.description -}}{{- $desc = . | truncate 160 "…" -}}{{- end -}}
+{{- end -}}
 {{- $type := cond .IsHome "website" "article" -}}
 
 {{- /* ─── OG image dynamique ─────────────────────────────────────────── */}}
 {{- $ogImg := "" -}}
 
-{{- /* Événement avec cover Facebook → on l'utilise directement */}}
-{{- if and (eq .Type "evenements") .Params.cover -}}
-  {{- with .Params.cover.source -}}
-    {{- $ogImg = . -}}
+{{- /* Événement : cover depuis site.Data.events */}}
+{{- if $event -}}
+  {{- with $event.cover -}}
+    {{- with .source -}}{{- $ogImg = . -}}{{- end -}}
   {{- end -}}
 {{- end -}}
 
@@ -17,7 +28,9 @@
   {{- $base := resources.Get "images/bar-interieur.jpg" -}}
   {{- $base = $base.Fit "1200x630 jpeg q85" -}}
   {{- $font := resources.Get "fonts/barlow-condensed-bold.ttf" -}}
-  {{- $pageTitle := cond .IsHome "Jazz Bar · Amiens" (upper .Title) -}}
+  {{- $pageTitle := upper .Title -}}
+  {{- if .IsHome -}}{{- $pageTitle = "Jazz Bar · Amiens" -}}{{- end -}}
+  {{- if $event -}}{{- $pageTitle = upper $event.name -}}{{- end -}}
 
   {{- $filters := slice
     (images.Brightness -35)
@@ -84,18 +97,19 @@
 }
 </script>
 
-{{- if eq .Type "evenements" }}
-{{- with .Params }}
+{{- if $event }}
 <!-- JSON-LD : Event -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Event",
-  "name": "{{ .name }}",
-  "startDate": "{{ .start_time }}",
-  {{ with .end_time }}"endDate": "{{ . }}",{{ end }}
-  "description": "{{ .description | truncate 200 "" }}",
-  "url": "{{ $.Permalink }}",
+  "name": "{{ $event.name }}",
+  "startDate": "{{ $event.start_time }}",
+  {{ with $event.end_time }}"endDate": "{{ . }}",{{ end }}
+  {{ with $event.description }}"description": "{{ . | truncate 200 "" }}",{{ end }}
+  "url": "{{ .Permalink }}",
+  "eventStatus": "{{ if $event.is_canceled }}https://schema.org/EventCancelled{{ else }}https://schema.org/EventScheduled{{ end }}",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": {
     "@type": "Place",
     "name": "Le Charleston",
@@ -112,9 +126,14 @@
     "name": "Le Charleston",
     "url": "{{ site.BaseURL }}"
   }
-  {{ with .cover }}{{ with .source }},
-  "image": "{{ . }}"{{ end }}{{ end }}
+  {{ with $event.cover }}{{ with .source }},
+  "image": "{{ . | absURL }}"{{ end }}{{ end }}
+  {{ with $event.ticket_uri }},
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ . }}",
+    "availability": "https://schema.org/InStock"
+  }{{ end }}
 }
 </script>
-{{- end }}
 {{- end }}
