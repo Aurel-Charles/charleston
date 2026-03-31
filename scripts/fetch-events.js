@@ -36,9 +36,11 @@ const FIELDS = [
   "description",
   "start_time",
   "end_time",
+  "timezone",
   "cover",
-  "place",
   "ticket_uri",
+  "is_canceled",
+  "updated_time",
 ].join(",");
 
 const API_VERSION = "v19.0";
@@ -71,6 +73,22 @@ async function fetchAllEvents() {
   }
 
   return allEvents;
+}
+
+/**
+ * Extracts #hashtags from the description, stores them as a `tags` array,
+ * and removes them from the description text.
+ * Example: "Super concert #jazz #blues" → tags: ["jazz", "blues"]
+ */
+function extractTags(event) {
+  const desc = event.description ?? "";
+  const tags = [...desc.matchAll(/#(\w+)/g)].map(m => m[1].toLowerCase());
+  const cleanDesc = desc.replace(/#\w+/g, "").replace(/\s{2,}/g, " ").trim();
+  return {
+    ...event,
+    description: cleanDesc || undefined,
+    ...(tags.length > 0 ? { tags } : {}),
+  };
 }
 
 async function downloadCover(event) {
@@ -106,7 +124,8 @@ async function main() {
 
     mkdirSync(COVERS_DIR, { recursive: true });
 
-    const eventsWithCovers = await Promise.all(events.map(downloadCover));
+    const eventsWithTags   = events.map(extractTags);
+    const eventsWithCovers = await Promise.all(eventsWithTags.map(downloadCover));
 
     writeFileSync(OUTPUT_PATH, JSON.stringify(eventsWithCovers, null, 2), "utf-8");
     console.log(`[fetch-events] Written to ${OUTPUT_PATH}`);

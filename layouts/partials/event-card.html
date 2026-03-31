@@ -47,9 +47,13 @@
     <p class="label mb-3 capitalize">{{ $dateFR }} · {{ $timeFR }}</p>
 
     <!-- Titre -->
-    <h3 class="font-display font-bold text-creme text-2xl sm:text-3xl uppercase leading-tight mb-3 group-hover:text-sauge transition-colors duration-200">
+    <h3 class="font-display font-bold text-creme text-2xl sm:text-3xl uppercase leading-tight mb-1 group-hover:text-sauge transition-colors duration-200">
       <a href="{{ $pageURL }}">{{ .name }}</a>
     </h3>
+
+    {{ with .tags }}
+    <p class="font-mono text-creme/30 text-xs mb-3">{{ range . }}#{{ . }} {{ end }}</p>
+    {{ end }}
 
     {{ with .description }}
       <p class="text-creme/50 text-sm leading-relaxed mb-5 flex-1">
@@ -62,6 +66,12 @@
       <a href="{{ $pageURL }}" class="font-mono text-xs uppercase tracking-widest text-sauge hover:text-creme transition-colors">
         En savoir plus <i class="fa fa-arrow-right ml-1"></i>
       </a>
+      {{ with .ticket_uri }}
+      <a href="{{ . }}" target="_blank" rel="noopener noreferrer"
+        class="font-mono text-xs uppercase tracking-widest text-creme/40 hover:text-sauge transition-colors ml-auto">
+        <i class="fa fa-ticket mr-1"></i>Billetterie
+      </a>
+      {{ end }}
     </div>
 
   </div>

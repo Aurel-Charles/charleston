@@ -52,7 +52,11 @@
         "city": "Amiens",
         "country": "France"
       }
-    }
+    },
+    "tags": [
+      "jazz",
+      "manouche"
+    ]
   },
   {
     "id": "1234567890002",
@@ -71,7 +75,10 @@
         "city": "Amiens",
         "country": "France"
       }
-    }
+    },
+    "tags": [
+      "blues"
+    ]
   },
   {
     "id": "1234567890003",
@@ -90,7 +97,11 @@
         "city": "Amiens",
         "country": "France"
       }
-    }
+    },
+    "tags": [
+      "jazz",
+      "swing"
+    ]
   },
   {
     "id": "1234567890004",

@@ -1,0 +1,119 @@
+{{ define "main" }}
+
+{{- /* Find next upcoming jam event */}}
+{{- $jam := false -}}
+{{- $now := now -}}
+{{- range sort site.Data.events "start_time" -}}
+  {{- if and (not $jam) (gt (time .start_time) $now) -}}
+    {{- if strings.Contains (.name | lower) "jam" -}}
+      {{- $jam = . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<!-- Hero -->
+<div class="pt-32 pb-0 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+  <p class="label text-sauge mb-4">Mensuel</p>
+  <h1 class="font-display font-black text-6xl sm:text-7xl lg:text-8xl uppercase text-encre leading-none mb-6">
+    Jam Session
+  </h1>
+  <p class="text-encre/60 text-xl leading-relaxed max-w-2xl">
+    Chaque mois, le Charleston ouvre sa scène à tous les musiciens.
+    Amateurs ou confirmés, jazz, blues, funk, soul — venez jouer, improviser, rencontrer.
+  </p>
+</div>
+
+<!-- Prochaine date ou message d'attente -->
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+  {{ if $jam }}
+    {{- $t       := time $jam.start_time -}}
+    {{- $months  := dict "January" "janvier" "February" "février" "March" "mars" "April" "avril" "May" "mai" "June" "juin" "July" "juillet" "August" "août" "September" "septembre" "October" "octobre" "November" "novembre" "December" "décembre" -}}
+    {{- $days    := dict "Monday" "lundi" "Tuesday" "mardi" "Wednesday" "mercredi" "Thursday" "jeudi" "Friday" "vendredi" "Saturday" "samedi" "Sunday" "dimanche" -}}
+    {{- $dayFR   := index $days   (dateFormat "Monday" $t)  | default (dateFormat "Monday" $t) -}}
+    {{- $monthFR := index $months (dateFormat "January" $t) | default (dateFormat "January" $t) -}}
+    {{- $dateFR  := printf "%s %s %s %s" $dayFR (dateFormat "2" $t) $monthFR (dateFormat "2006" $t) -}}
+    {{- $timeFR  := dateFormat "15h04" $t -}}
+  <div class="inline-flex items-center gap-6 bg-encre rounded-2xl px-8 py-6">
+    <div class="w-10 h-0.5 bg-sauge"></div>
+    <div>
+      <p class="label text-sauge/70 mb-1">Prochaine date</p>
+      <p class="font-mono font-bold text-creme text-2xl uppercase leading-none capitalize">{{ $dateFR }}</p>
+      <p class="font-mono text-creme/40 text-sm mt-1">à {{ $timeFR }} · Entrée libre</p>
+    </div>
+    <a href="{{ printf "/evenements/%s/" $jam.id | relURL }}" class="btn-outline-light ml-4">
+      <i class="fa fa-arrow-right mr-2"></i>Voir l'événement
+    </a>
+  </div>
+  {{ else }}
+  <div class="inline-flex items-center gap-6 bg-encre/5 border border-encre/10 rounded-2xl px-8 py-6">
+    <div class="w-10 h-0.5 bg-sauge/40"></div>
+    <div>
+      <p class="label text-encre/40 mb-1">Prochaine date</p>
+      <p class="font-mono font-bold text-encre/40 text-lg uppercase leading-none">À venir — restez connectés</p>
+    </div>
+  </div>
+  {{ end }}
+</div>
+
+<!-- Infos pratiques -->
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 pb-32">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- Concept -->
+    <div class="md:col-span-2 space-y-6">
+      <h2 class="font-display font-bold text-3xl uppercase text-encre">Le concept</h2>
+      <p class="text-encre/60 leading-relaxed">
+        La Jam Session du Charleston, c'est un rendez-vous mensuel pensé pour les musiciens qui veulent jouer ensemble, découvrir de nouvelles têtes, et improviser dans une ambiance chaleureuse.
+      </p>
+      <p class="text-encre/60 leading-relaxed">
+        Pas de pression, pas d'audition. Il suffit d'apporter son instrument — ou juste ses oreilles.
+        Un house band est souvent présent pour lancer la soirée et accompagner les participants.
+      </p>
+
+      <!-- Tags style -->
+      <div class="flex flex-wrap gap-3 pt-2">
+        {{ range slice "jazz" "blues" "funk" "soul" "improvisation" }}
+        <span class="font-mono text-xs uppercase tracking-widest text-sauge border border-sauge/30 rounded-full px-3 py-1">#{{ . }}</span>
+        {{ end }}
+      </div>
+    </div>
+
+    <!-- Pratique -->
+    <aside>
+      <div class="bg-encre rounded-2xl overflow-hidden">
+        <div class="bg-encre px-8 pt-8 pb-10 relative overflow-hidden">
+          <div class="absolute bottom-0 right-8 w-20 h-10 bg-sauge rounded-t-full pointer-events-none"></div>
+          <div class="w-8 h-0.5 bg-sauge mb-8 relative z-10"></div>
+
+          <div class="mb-6 relative z-10">
+            <p class="label mb-1">Fréquence</p>
+            <p class="font-mono font-bold text-creme text-lg uppercase leading-none">Mensuel</p>
+          </div>
+
+          <div class="mb-6 relative z-10">
+            <p class="label mb-1">Lieu</p>
+            <p class="font-mono font-bold text-creme text-lg uppercase leading-none">Le Charleston</p>
+            <p class="font-mono text-creme/35 text-xs mt-2 tracking-wide">{{ site.Params.address }}</p>
+          </div>
+
+          <div class="relative z-10">
+            <p class="label mb-1">Entrée</p>
+            <p class="font-mono font-bold text-creme text-lg uppercase leading-none">Libre</p>
+          </div>
+        </div>
+
+        <div class="px-8 py-4 flex items-center justify-center gap-3">
+          <div class="w-1 h-1 rounded-full bg-creme/20"></div>
+          <a href="{{ site.Params.facebook }}" target="_blank" rel="noopener noreferrer"
+            class="font-mono text-[10px] uppercase tracking-[0.2em] text-sauge hover:text-creme transition-colors">
+            <i class="fa fa-facebook-square mr-1"></i>Suivre la page
+          </a>
+          <div class="w-1 h-1 rounded-full bg-creme/20"></div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+{{ end }}
