@@ -1,0 +1,37 @@
+<section id="programmation" class="py-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+      <div>
+        <p class="label mb-2">Agenda</p>
+        <h2 class="font-display font-black text-5xl sm:text-6xl uppercase text-encre leading-none">Prochains concerts</h2>
+      </div>
+      <a href="{{ "/programmation/" | relURL }}" class="btn-outline self-start sm:self-auto flex-shrink-0">Tout voir</a>
+    </div>
+
+    {{ $now := now }}
+    {{ $upcoming := slice }}
+    {{ range sort site.Data.events "start_time" }}
+      {{ if gt (time .start_time) $now }}
+        {{ $upcoming = $upcoming | append . }}
+      {{ end }}
+    {{ end }}
+
+    {{ if $upcoming }}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{ range first 3 $upcoming }}
+          {{ partial "event-card.html" . }}
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="text-center py-20 border border-encre/10">
+        <p class="font-display font-bold text-3xl uppercase text-encre/30 mb-3">Rien de prévu.</p>
+        <p class="text-encre/40 text-sm font-mono">Suivez Facebook pour ne rien manquer.</p>
+        <a href="{{ site.Params.facebook }}" target="_blank" rel="noopener noreferrer" class="btn-outline mt-6 inline-block">
+          Facebook
+        </a>
+      </div>
+    {{ end }}
+
+  </div>
+</section>
