@@ -9,6 +9,7 @@
  *   FACEBOOK_ACCESS_TOKEN — Page access token (long-lived)
  */
 
+import "dotenv/config";
 import { writeFileSync, mkdirSync, existsSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";

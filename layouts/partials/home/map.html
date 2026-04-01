@@ -1,0 +1,56 @@
+<section id="acces" class="bg-creme py-24 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+      <div>
+        <p class="label mb-2">Accès</p>
+        <h2 class="font-display font-black text-5xl sm:text-6xl uppercase text-encre leading-none">Nous trouver</h2>
+      </div>
+      <a
+        href="https://maps.google.com/?q=Le+Charleston+Amiens"
+        target="_blank" rel="noopener noreferrer"
+        class="btn-outline self-start sm:self-auto flex-shrink-0"
+      >
+        <i class="fa fa-map-marker mr-2"></i>Itinéraire
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
+
+      <div class="rounded-2xl overflow-hidden border border-encre/10" style="min-height:400px;">
+        <iframe
+          title="Carte — Le Charleston, Amiens"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2570.1823657241594!2d2.2945985769852113!3d49.89537947149156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e7843f3b37de33%3A0xe5e02e8c0c7dd4ae!2sLe%20Charleston!5e0!3m2!1sfr!2sfr!4v1774966952545!5m2!1sfr!2sfr"
+          width="100%" height="100%"
+          style="min-height:400px; display:block; border:0;"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <div class="flex flex-col gap-6 justify-center">
+        <div>
+          <p class="label mb-2">Adresse</p>
+          <p class="font-mono font-bold text-encre text-base uppercase leading-snug">{{ site.Params.address }}</p>
+        </div>
+        <div>
+          <p class="label mb-2">Horaires</p>
+          <p class="text-encre/60 text-sm leading-relaxed font-mono">
+            Mardi — Samedi<br>18h00 — 02h00
+          </p>
+        </div>
+        <div>
+          <p class="label mb-2">Contact</p>
+          <a href="mailto:{{ site.Params.email }}" class="font-mono text-sauge text-sm hover:text-encre transition-colors">{{ site.Params.email }}</a>
+          {{ with site.Params.phone }}<p class="font-mono text-encre/40 text-sm mt-1">{{ . }}</p>{{ end }}
+        </div>
+        <div class="flex flex-col gap-2 pt-2 border-t border-encre/10">
+          <p class="flex items-center gap-2 text-encre/50 text-sm"><i class="fa fa-train text-sauge w-4"></i>Gare d'Amiens — 10 min à pied</p>
+          <p class="flex items-center gap-2 text-encre/50 text-sm"><i class="fa fa-bus text-sauge w-4"></i>Bus Ametis — arrêt Gare</p>
+          <p class="flex items-center gap-2 text-encre/50 text-sm"><i class="fa fa-car text-sauge w-4"></i>Parking Cathédrale — 5 min</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

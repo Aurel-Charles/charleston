@@ -1,0 +1,123 @@
+{{ define "main" }}
+
+{{- $menu := site.Data.menu -}}
+
+<!-- Hero -->
+<div class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+  <p class="label text-sauge mb-4">Bar</p>
+  <h1 class="font-display font-black text-6xl sm:text-7xl lg:text-8xl uppercase text-encre leading-none mb-4">
+    La Carte
+  </h1>
+  <p class="text-encre/50 font-mono text-sm uppercase tracking-widest">Entrée libre · Toujours.</p>
+</div>
+
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 space-y-20">
+
+  <!-- Cocktails -->
+  {{ with $menu.cocktails }}
+  <section>
+    <div class="flex items-center gap-6 mb-8">
+      <h2 class="font-display font-black text-4xl uppercase text-encre">Cocktails</h2>
+      <div class="flex-1 h-px bg-encre/10"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-encre/10 border border-encre/10">
+      {{ range . }}
+      <div class="bg-creme p-6 flex justify-between gap-4">
+        <div>
+          <p class="font-mono font-bold text-encre uppercase tracking-wide text-sm mb-1">{{ .name }}</p>
+          {{ with .desc }}<p class="text-encre/50 text-xs leading-relaxed">{{ . }}</p>{{ end }}
+        </div>
+        <p class="font-mono font-bold text-sauge text-sm flex-shrink-0">{{ .price }}€</p>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- Bières -->
+  {{ with $menu.bieres }}
+  <section>
+    <div class="flex items-center gap-6 mb-8">
+      <h2 class="font-display font-black text-4xl uppercase text-encre">Bières</h2>
+      <div class="flex-1 h-px bg-encre/10"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-encre/10 border border-encre/10">
+      {{ range . }}
+      <div class="bg-creme p-6 flex justify-between gap-4">
+        <div>
+          <p class="font-mono font-bold text-encre uppercase tracking-wide text-sm mb-1">{{ .name }}</p>
+          {{ with .desc }}<p class="text-encre/50 text-xs leading-relaxed">{{ . }}</p>{{ end }}
+        </div>
+        <p class="font-mono font-bold text-sauge text-sm flex-shrink-0">{{ .price }}€</p>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- Vins -->
+  {{ with $menu.vins }}
+  <section>
+    <div class="flex items-center gap-6 mb-8">
+      <h2 class="font-display font-black text-4xl uppercase text-encre">Vins</h2>
+      <div class="flex-1 h-px bg-encre/10"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-encre/10 border border-encre/10">
+      {{ range . }}
+      <div class="bg-creme p-6 flex justify-between gap-4">
+        <div>
+          <p class="font-mono font-bold text-encre uppercase tracking-wide text-sm mb-1">{{ .name }}</p>
+          {{ with .desc }}<p class="text-encre/50 text-xs leading-relaxed">{{ . }}</p>{{ end }}
+        </div>
+        <p class="font-mono font-bold text-sauge text-sm flex-shrink-0">{{ .price }}€</p>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- Softs -->
+  {{ with $menu.softs }}
+  <section>
+    <div class="flex items-center gap-6 mb-8">
+      <h2 class="font-display font-black text-4xl uppercase text-encre">Softs & Cafés</h2>
+      <div class="flex-1 h-px bg-encre/10"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-encre/10 border border-encre/10">
+      {{ range . }}
+      <div class="bg-creme p-6 flex justify-between gap-4">
+        <div>
+          <p class="font-mono font-bold text-encre uppercase tracking-wide text-sm mb-1">{{ .name }}</p>
+          {{ with .desc }}<p class="text-encre/50 text-xs leading-relaxed">{{ . }}</p>{{ end }}
+        </div>
+        <p class="font-mono font-bold text-sauge text-sm flex-shrink-0">{{ .price }}€</p>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- Food -->
+  {{ with $menu.food }}
+  <section>
+    <div class="flex items-center gap-6 mb-8">
+      <h2 class="font-display font-black text-4xl uppercase text-encre">À grignoter</h2>
+      <div class="flex-1 h-px bg-encre/10"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-encre/10 border border-encre/10">
+      {{ range . }}
+      <div class="bg-creme p-6 flex justify-between gap-4">
+        <div>
+          <p class="font-mono font-bold text-encre uppercase tracking-wide text-sm mb-1">{{ .name }}</p>
+          {{ with .desc }}<p class="text-encre/50 text-xs leading-relaxed">{{ . }}</p>{{ end }}
+        </div>
+        <p class="font-mono font-bold text-sauge text-sm flex-shrink-0">{{ .price }}€</p>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+</div>
+
+{{ end }}
