@@ -13,14 +13,11 @@
 
 <!-- Hero -->
 <div class="pt-32 pb-0 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-  <p class="label text-sauge mb-4">Mensuel</p>
+  <p class="label text-sauge mb-4">{{ .Params.label }}</p>
   <h1 class="font-display font-black text-6xl sm:text-7xl lg:text-8xl uppercase text-encre leading-none mb-6">
-    Jam Session
+    {{ .Title }}
   </h1>
-  <p class="text-encre/60 text-xl leading-relaxed max-w-2xl">
-    Chaque mois, le Charleston ouvre sa scène à tous les musiciens.
-    Amateurs ou confirmés, jazz, blues, funk, soul — venez jouer, improviser, rencontrer.
-  </p>
+  <p class="text-encre/60 text-xl leading-relaxed max-w-2xl">{{ .Description }}</p>
 </div>
 
 <!-- Prochaine date ou message d'attente -->
@@ -62,20 +59,17 @@
     <!-- Concept -->
     <div class="md:col-span-2 space-y-6">
       <h2 class="font-display font-bold text-3xl uppercase text-encre">Le concept</h2>
-      <p class="text-encre/60 leading-relaxed">
-        La Jam Session du Charleston, c'est un rendez-vous mensuel pensé pour les musiciens qui veulent jouer ensemble, découvrir de nouvelles têtes, et improviser dans une ambiance chaleureuse.
-      </p>
-      <p class="text-encre/60 leading-relaxed">
-        Pas de pression, pas d'audition. Il suffit d'apporter son instrument — ou juste ses oreilles.
-        Un house band est souvent présent pour lancer la soirée et accompagner les participants.
-      </p>
+      {{ range .Params.concept }}
+      <p class="text-encre/60 leading-relaxed">{{ . }}</p>
+      {{ end }}
 
-      <!-- Tags style -->
+      {{ with .Params.tags }}
       <div class="flex flex-wrap gap-3 pt-2">
-        {{ range slice "jazz" "blues" "funk" "soul" "improvisation" }}
+        {{ range . }}
         <span class="font-mono text-xs uppercase tracking-widest text-sauge border border-sauge/30 rounded-full px-3 py-1">#{{ . }}</span>
         {{ end }}
       </div>
+      {{ end }}
     </div>
 
     <!-- Pratique -->
@@ -87,7 +81,7 @@
 
           <div class="mb-6 relative z-10">
             <p class="label mb-1">Fréquence</p>
-            <p class="font-mono font-bold text-creme text-lg uppercase leading-none">Mensuel</p>
+            <p class="font-mono font-bold text-creme text-lg uppercase leading-none">{{ .Params.label }}</p>
           </div>
 
           <div class="mb-6 relative z-10">
