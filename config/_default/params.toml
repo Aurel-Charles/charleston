@@ -1,0 +1,45 @@
+# ─── Infos de contact ────────────────────────────────────────────────────────
+description     = "Le Charleston est un bar jazz et salle de concert à Amiens. Programmation live, ambiance feutrée, cocktails."
+address         = "12 Rue du Jazz, 80000 Amiens, France"
+email           = "contact@le-charleston.fr"
+phone           = "+33 3 22 00 00 00"
+facebook        = "https://www.facebook.com/LeCharlestonAmiens"
+
+# ─── Horaires ─────────────────────────────────────────────────────────────────
+openingHours        = "Tu-Sa 18:00-02:00"   # format schema.org
+openingHoursDisplay = "Mardi — Samedi · 18h00 — 02h00"
+
+# ─── Business ─────────────────────────────────────────────────────────────────
+priceRange      = "€"
+entrancePolicy  = "Entrée libre — toujours."
+
+# ─── SEO ──────────────────────────────────────────────────────────────────────
+ogImage    = "/og-default.jpg"   # image sociale 1200×630 à déposer dans static/
+latitude   = "49.894067"
+longitude  = "2.295753"
+
+# ─── Stats homepage ───────────────────────────────────────────────────────────
+[[stats]]
+  value = "10+"
+  label = "Années"
+
+[[stats]]
+  value = "200+"
+  label = "Concerts / an"
+
+[[stats]]
+  value = "120"
+  label = "Places"
+
+# ─── Accès / transport ────────────────────────────────────────────────────────
+[[transport]]
+  icon = "fa-train"
+  text = "Gare d'Amiens — 10 min à pied"
+
+[[transport]]
+  icon = "fa-bus"
+  text = "Bus Ametis — arrêt Gare"
+
+[[transport]]
+  icon = "fa-car"
+  text = "Parking Cathédrale — 5 min"

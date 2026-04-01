@@ -35,9 +35,7 @@
         </div>
         <div>
           <p class="label mb-2">Horaires</p>
-          <p class="text-encre/60 text-sm leading-relaxed font-mono">
-            Mardi — Samedi<br>18h00 — 02h00
-          </p>
+          <p class="text-encre/60 text-sm leading-relaxed font-mono">{{ site.Params.openingHoursDisplay }}</p>
         </div>
         <div>
           <p class="label mb-2">Contact</p>
@@ -45,9 +43,9 @@
           {{ with site.Params.phone }}<p class="font-mono text-encre/40 text-sm mt-1">{{ . }}</p>{{ end }}
         </div>
         <div class="flex flex-col gap-2 pt-2 border-t border-encre/10">
-          <p class="flex items-center gap-2 text-encre/50 text-sm"><i class="fa fa-train text-sauge w-4"></i>Gare d'Amiens — 10 min à pied</p>
-          <p class="flex items-center gap-2 text-encre/50 text-sm"><i class="fa fa-bus text-sauge w-4"></i>Bus Ametis — arrêt Gare</p>
-          <p class="flex items-center gap-2 text-encre/50 text-sm"><i class="fa fa-car text-sauge w-4"></i>Parking Cathédrale — 5 min</p>
+          {{ range site.Params.transport }}
+          <p class="flex items-center gap-2 text-encre/50 text-sm"><i class="fa {{ .icon }} text-sauge w-4"></i>{{ .text }}</p>
+          {{ end }}
         </div>
       </div>
 
