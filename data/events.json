@@ -1,220 +1,35 @@
 [
   {
-    "id": "9999999990001",
-    "name": "Jam Session — Scène Ouverte",
-    "description": "Chaque premier dimanche du mois, Le Charleston ouvre sa scène à tous les musiciens. Jazz, blues, soul, funk... amenez votre instrument, rejoignez la session ou venez simplement écouter. Ambiance décontractée, entrée libre.",
-    "start_time": "2026-04-05T17:00:00+0200",
-    "end_time": "2026-04-05T21:00:00+0200",
-    "genre": "Jazz / Scène ouverte",
+    "id": "2001675093764280",
+    "name": "LA JAM du Zouk !!!",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non vulputate arcu. Aliquam consectetur iaculis tellus, eget dapibus lorem mattis sit amet. Etiam vel nunc in ligula ullamcorper accumsan. Aliquam eget nunc ac leo porttitor ullamcorper. Vivamus ut aliquam elit. Duis consequat cursus ultrices. Etiam hendrerit eleifend faucibus. In euismod hendrerit iaculis. Vivamus ac massa ipsum. Aliquam consectetur orci sit amet lacus imperdiet, at egestas diam sodales. Nulla a imperdiet magna.",
+    "start_time": "2026-04-23T17:00:00+0200",
+    "timezone": "Europe/Paris",
     "cover": {
-      "source": "/images/concert-4.jpg"
+      "offset_x": 50,
+      "offset_y": 50,
+      "source": "/images/events/2001675093764280.jpg",
+      "id": "122123846385137498"
     },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    }
-  },
-  {
-    "id": "9999999990002",
-    "name": "Jam Session — Scène Ouverte",
-    "description": "Chaque premier dimanche du mois, Le Charleston ouvre sa scène à tous les musiciens. Jazz, blues, soul, funk... amenez votre instrument, rejoignez la session ou venez simplement écouter. Ambiance décontractée, entrée libre.",
-    "start_time": "2026-05-03T17:00:00+0200",
-    "end_time": "2026-05-03T21:00:00+0200",
-    "genre": "Jazz / Scène ouverte",
-    "cover": {
-      "source": "/images/concert-4.jpg"
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    }
-  },
-  {
-    "id": "1234567890001",
-    "name": "Quartet Nomade — Nuit de Jazz",
-    "description": "Le Quartet Nomade revient pour une soirée exceptionnelle au Charleston. Composé de quatre musiciens aguerris, ce groupe mêle jazz manouche et standards américains avec une énergie communicative. Une nuit de musique à ne pas manquer pour les amateurs de jazz authentique.",
-    "start_time": "2026-04-12T20:30:00+0200",
-    "end_time": "2026-04-12T23:30:00+0200",
-    "genre": "Jazz manouche",
-    "duration": "~3h",
-    "cover": {
-      "source": "/images/concert-1.jpg"
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
+    "is_canceled": false,
+    "updated_time": "2026-04-01T14:02:36+0000",
     "tags": [
-      "jazz",
-      "manouche"
+      "jazz"
     ]
   },
   {
-    "id": "1234567890002",
-    "name": "Blues Night with The Riverside Band",
-    "description": "The Riverside Band débarque à Amiens pour une soirée blues électrisante. Entre Delta blues et Chicago blues, ce trio vous plonge au cœur de la musique afro-américaine. Guitares slide, harmonica et batterie groovy pour une nuit inoubliable.",
-    "start_time": "2026-04-19T21:00:00+0200",
-    "end_time": "2026-04-20T00:00:00+0200",
-    "genre": "Blues",
-    "duration": "~3h",
+    "id": "975258791814428",
+    "name": "printemps",
+    "description": "loroeirei",
+    "start_time": "2026-04-03T13:00:00-0400",
+    "timezone": "America/New_York",
     "cover": {
-      "source": "/images/concert-4.jpg"
+      "offset_x": 50,
+      "offset_y": 50,
+      "source": "/images/events/975258791814428.jpg",
+      "id": "122123822487137498"
     },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
-    "tags": [
-      "blues"
-    ]
-  },
-  {
-    "id": "1234567890003",
-    "name": "Soirée Django — Hommage à Reinhardt",
-    "description": "Le Charleston rend hommage au légendaire Django Reinhardt avec une soirée dédiée au jazz manouche. Deux guitares, une contrebasse, et l'esprit de Reinhardt qui plane sur la salle.",
-    "start_time": "2026-05-03T20:00:00+0200",
-    "end_time": "2026-05-03T23:00:00+0200",
-    "genre": "Jazz manouche",
-    "duration": "~3h",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    },
-    "tags": [
-      "jazz",
-      "swing"
-    ]
-  },
-  {
-    "id": "1234567890004",
-    "name": "New Orleans Brass Band",
-    "description": "Plongez dans l'univers festif de la Nouvelle-Orléans avec ce brass band explosif. Cuivres en parade, rythmes syncopés et ambiance de Mardi Gras garantis. Un concert debout, une fête du son qui envahit chaque recoin du Charleston.",
-    "start_time": "2026-05-10T21:00:00+0200",
-    "end_time": "2026-05-11T00:00:00+0200",
-    "genre": "Brass / Soul",
-    "duration": "~3h",
-    "cover": {
-      "source": "/images/concert-2.jpg"
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    }
-  },
-  {
-    "id": "1234567890005",
-    "name": "Jazz Vocal — Clara Millet Trio",
-    "description": "La chanteuse Clara Millet, accompagnée de son trio piano-basse-batterie, interprète les grands standards du jazz vocal. De Billie Holiday à Nina Simone, une voix chaude et envoûtante pour une soirée d'une élégance rare.",
-    "start_time": "2026-05-17T20:30:00+0200",
-    "end_time": "2026-05-17T23:00:00+0200",
-    "genre": "Jazz vocal",
-    "duration": "~2h30",
-    "cover": {
-      "source": "/images/concert-3.jpg"
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    }
-  },
-  {
-    "id": "1234567890006",
-    "name": "Funk & Soul Night",
-    "description": "Le Charleston se transforme en dance floor pour une nuit funk et soul. Le collectif Groove Machine, sept musiciens sur scène, reprend les classiques de James Brown, Sly Stone et Earth Wind & Fire. Préparez vos chaussures de danse.",
-    "start_time": "2026-05-23T21:30:00+0200",
-    "end_time": "2026-05-24T01:00:00+0200",
-    "genre": "Funk / Soul",
-    "duration": "~3h30",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    }
-  },
-  {
-    "id": "1234567890007",
-    "name": "Bossa Nova & Samba — Grupo Carioca",
-    "description": "Le Grupo Carioca transporte le Charleston sous le soleil de Rio. Bossa nova intimiste, samba endiablée et chants en portugais pour une escapade brésilienne au cœur d'Amiens.",
-    "start_time": "2026-06-06T20:00:00+0200",
-    "end_time": "2026-06-06T23:00:00+0200",
-    "genre": "Bossa nova / Samba",
-    "duration": "~3h",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    }
-  },
-  {
-    "id": "1234567890008",
-    "name": "Piano Solo — Thomas Lefèvre",
-    "description": "Thomas Lefèvre, pianiste prodige formé au Conservatoire de Paris, propose un récital solo qui traverse le jazz contemporain, de Keith Jarrett à Brad Mehldau. Un moment de grâce et d'improvisation pure dans l'écrin du Charleston.",
-    "start_time": "2026-06-13T20:00:00+0200",
-    "end_time": "2026-06-13T22:30:00+0200",
-    "genre": "Jazz contemporain",
-    "duration": "~2h30",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    }
-  },
-  {
-    "id": "1234567890009",
-    "name": "Festival Jazz d'Amiens — Nuit d'Ouverture",
-    "description": "Le Charleston ouvre les festivités du Festival Jazz d'Amiens avec une nuit exceptionnelle réunissant trois formations locales. Du jazz straight-ahead au jazz fusion, trois heures de musique vivante pour lancer la saison estivale en beauté.",
-    "start_time": "2026-06-20T19:30:00+0200",
-    "end_time": "2026-06-20T23:59:00+0200",
-    "genre": "Jazz / Fusion",
-    "duration": "~4h",
-    "cover": {
-      "source": ""
-    },
-    "place": {
-      "name": "Le Charleston",
-      "location": {
-        "city": "Amiens",
-        "country": "France"
-      }
-    }
+    "is_canceled": false,
+    "updated_time": "2026-04-01T09:54:57+0000"
   }
 ]
