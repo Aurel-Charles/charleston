@@ -16,20 +16,5 @@
     "tags": [
       "jazz"
     ]
-  },
-  {
-    "id": "975258791814428",
-    "name": "printemps",
-    "description": "loroeirei",
-    "start_time": "2026-04-03T13:00:00-0400",
-    "timezone": "America/New_York",
-    "cover": {
-      "offset_x": 50,
-      "offset_y": 50,
-      "source": "/images/events/975258791814428.jpg",
-      "id": "122123822487137498"
-    },
-    "is_canceled": false,
-    "updated_time": "2026-04-01T09:54:57+0000"
   }
 ]
