@@ -9,15 +9,12 @@
       <!-- Titre massif + texte + CTA -->
       <div>
         <h2 class="font-display font-black text-[5.5rem] sm:text-[7rem] uppercase text-creme leading-[0.88] tracking-tight mb-10">
-          Jazz.<br />
-          <span class="text-sauge">Blues.</span><br />
-          Soul.
+          {{ range $i, $word := .Params.headline -}}
+            {{- if eq $i 1 }}<span class="text-sauge">{{ $word }}</span>{{ else }}{{ $word }}{{ end }}<br />
+          {{- end }}
         </h2>
-        <p class="text-creme/50 leading-relaxed max-w-xs text-base mb-2">
-          Une scène de 120 places, des vrais musiciens, et une bière qui va avec.
-          Ouvert mar–sam dès 18h, au cœur d'Amiens.
-        </p>
-        <p class="font-mono text-sauge text-xs tracking-widest uppercase mb-10">Entrée libre — toujours.</p>
+        <p class="text-creme/50 leading-relaxed max-w-xs text-base mb-2">{{ .Params.pitch }}</p>
+        <p class="font-mono text-sauge text-xs tracking-widest uppercase mb-10">{{ site.Params.entrancePolicy }}</p>
         <a href="{{ "/programmation/" | relURL }}" class="btn-outline-light">Voir les concerts</a>
       </div>
 
@@ -90,18 +87,12 @@
   <!-- Stats -->
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
     <div class="border-t border-creme/10 pt-10 grid grid-cols-3 gap-0">
-      <div class="pr-8">
-        <p class="font-display font-black text-7xl sm:text-8xl text-sauge leading-none">10+</p>
-        <p class="label text-creme/30 mt-3">Années</p>
+      {{ range $i, $stat := site.Params.stats }}
+      <div class="{{ if eq $i 0 }}pr-8{{ else if eq $i 2 }}border-l border-creme/10 pl-8{{ else }}border-l border-creme/10 px-8{{ end }}">
+        <p class="font-display font-black text-7xl sm:text-8xl text-sauge leading-none">{{ $stat.value }}</p>
+        <p class="label text-creme/30 mt-3">{{ $stat.label }}</p>
       </div>
-      <div class="border-l border-creme/10 px-8">
-        <p class="font-display font-black text-7xl sm:text-8xl text-sauge leading-none">200+</p>
-        <p class="label text-creme/30 mt-3">Concerts / an</p>
-      </div>
-      <div class="border-l border-creme/10 pl-8">
-        <p class="font-display font-black text-7xl sm:text-8xl text-sauge leading-none">120</p>
-        <p class="label text-creme/30 mt-3">Places</p>
-      </div>
+      {{ end }}
     </div>
   </div>
 

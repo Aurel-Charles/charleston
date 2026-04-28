@@ -1,0 +1,12 @@
+baseURL = "https://le-charleston.netlify.app/"
+languageCode = "fr-FR"
+defaultContentLanguage = "fr"
+title = "Le Charleston — Jazz Bar à Amiens"
+
+[build]
+  writeStats = true
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.120.0"
